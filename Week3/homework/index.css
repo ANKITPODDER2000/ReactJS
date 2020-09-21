@@ -1,0 +1,17 @@
+*{
+    margin:  0;
+    padding: 0;
+}
+body , #root{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 100vh;
+}
+.MainBox{
+    position: relative;
+    width: 80%;
+    min-height: 80vh;
+    padding-top: 80px;
+}
