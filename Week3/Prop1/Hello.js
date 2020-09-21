@@ -1,11 +1,14 @@
 class Hello extends React.Component{
     render() {
-        let bangs = "!".repeat(this.props.bangs);
-        {/*console.log(this.props);*/}
+        let msg = "";
+        if (this.props.a == this.props.b && this.props.b == this.props.c)
+            msg = "You win!"
+        else
+            msg = "You loss!"
         return (
             <div>
-                <p>Hello {this.props.to} from {this.props.from}{bangs}</p>
-                <img src = {this.props.url} height = "400px" />
+                <h1>{this.props.a}  {this.props.b}  {this.props.c}</h1>
+                {msg}
             </div>
         );
     }
