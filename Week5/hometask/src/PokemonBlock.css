@@ -1,0 +1,8 @@
+.PokemonBlock{
+    position: relative;
+    width: 100%;
+    height: calc((100vh - 120px) / 2);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}

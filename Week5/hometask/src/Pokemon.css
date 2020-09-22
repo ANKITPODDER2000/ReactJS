@@ -1,0 +1,42 @@
+.Pokemon{
+    position: relative;
+    width: 260px;
+    height: 80%;
+    overflow: hidden;
+    background: #fff;
+    border-radius: 4px;
+    text-align: center;
+    transition: 0.5s;
+    box-shadow: 10px 10px 10px #0005;
+}
+.Pokemon:hover{
+    box-shadow: 10px 10px 10px #0009;
+}
+.Pokemon .img{
+    position: relative;
+    width: 93%;
+    height: 65%;
+    display: block;
+    margin: 3.5%;
+    border-radius: 4px;
+    background: #0002;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.Pokemon .img img{
+    position: relative;
+    height: 70%;
+    transition: 0.5s ease-in-out;
+}
+.Pokemon:hover .img img{
+    height: 90%;
+}
+.Pokemon h1{
+    font-size: 18px;
+    margin-top: -5px;
+    margin-bottom: 10px;
+}
+.Pokemon p{
+    font-size: 14px;
+}
