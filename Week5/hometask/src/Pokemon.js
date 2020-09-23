@@ -4,20 +4,20 @@ function processNum(a) {
   return ("00" + String(a)).slice(-3);
 }
 class Pokemon extends Component { 
-    
+    consol
     render() {
         let img =
           "http://assets.pokemon.com/assets/cms2/img/pokedex/detail/" +
-          processNum(this.props.da[1]) +
+          processNum(this.props.da['id']) +
           ".png";
         return (
           <div className="Pokemon">
             <div className="img">
               <img src={img} />
             </div>
-            <h1>{this.props.da[0]}</h1>
+            <h1>{this.props.da['name']}</h1>
             <p>
-              Type : {this.props.da[2]} || Exp : {this.props.da[3]}
+              Type : {this.props.da["type"]} || Exp : {this.props.da['exp']}
             </p>
           </div>
         );
