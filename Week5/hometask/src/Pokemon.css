@@ -1,7 +1,7 @@
 .Pokemon{
     position: relative;
     width: 260px;
-    height: 80%;
+    height: 250px;
     overflow: hidden;
     background: #fff;
     border-radius: 4px;
@@ -15,7 +15,7 @@
 .Pokemon .img{
     position: relative;
     width: 93%;
-    height: 65%;
+    height: 170px;
     display: block;
     margin: 3.5%;
     border-radius: 4px;
@@ -39,4 +39,13 @@
 }
 .Pokemon p{
     font-size: 14px;
+}
+
+@media  screen and (max-width: 1200px) {
+    body{
+        overflow-y: scroll;
+    }
+  .Pokemon {
+    margin: 15px 10px;
+  }
 }

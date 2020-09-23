@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Heading from "./Heading";
 import PokemonBlock from "./PokemonBlock";
-import './App.css';
 
 class App extends Component{
   render() {
