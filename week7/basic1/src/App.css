@@ -1,0 +1,50 @@
+.App{
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    padding-top: 50px;
+}
+.App .dice-container{
+    position: relative;
+    max-width: 500px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0px auto 30px;
+    height: auto;
+}
+@media screen and (max-width : 400px){
+    .App .dice-container{
+        position: relative;
+        width: 80%;
+        display: flex;
+        margin: 0 auto;
+        justify-content: space-around;
+        align-items: center;
+    }
+    .App .dice-container div:nth-child(1){
+        margin-bottom: 30px;
+    }
+}
+
+.App button{
+    display: block;
+    margin: 50px auto;
+    background: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    border: 2px solid purple;
+    font-size: 18px;
+    color: purple;
+    transition: 0.5s;
+    width: 180px;
+    height: 60px;
+}
+.App button:hover{
+    background: purple;
+    color: #fff;
+}
