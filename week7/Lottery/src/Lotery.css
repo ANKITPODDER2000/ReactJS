@@ -1,0 +1,47 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.lotery-container{
+    position: relative;
+    width: 700px;
+    display: block;
+    height: 250px;
+    overflow: hidden;
+    margin: 0 auto;
+    background: #0001;
+    padding-top: 30px;
+    margin-top: 40px;
+}
+.lotery-container h1{
+    margin-bottom: 25px;
+    text-align: center;
+}
+.lotery-container .ballContainer{
+    position: relative;
+    width: 80%;
+    height: 50px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.lotery-container button{
+    position: relative;
+    display: block;
+    margin: 25px auto 0;
+    padding: 12px 25px;
+    background: none;
+    border: none;
+    outline: none;
+    border: 1.75px solid  rgb(223, 35, 67);
+    color:  rgb(223, 35, 67);
+    font-weight: bolder;
+    transition: 0.5s;
+}
+.lotery-container button:hover{
+    color : #fff;
+    background: rgb(223, 35, 67);
+    cursor: pointer;
+}

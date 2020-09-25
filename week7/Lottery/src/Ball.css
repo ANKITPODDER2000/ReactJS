@@ -1,0 +1,17 @@
+div.ball{
+    position: relative;
+    width: 50px;
+    height: 50px;
+    background: rgb(223, 35, 67);
+    color: #fff;
+    text-align: center;
+    line-height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: 0.5s;
+}
+div.ball:hover{
+    box-shadow: 0 0 10px 1px  rgb(223, 35, 67),
+                0 0 20px 3px  rgb(223, 35, 67),
+                0 0 60px 4px  rgb(223, 35, 67);
+}
