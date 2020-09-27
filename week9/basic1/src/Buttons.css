@@ -1,0 +1,17 @@
+.btn-box{
+    position: relative;
+    width: 100%;
+    height: 80px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.btn-box button{
+    position: relative;
+    background: none;
+    outline: none;
+    padding: 14px 26px;
+    border: none;
+    outline: none;
+}

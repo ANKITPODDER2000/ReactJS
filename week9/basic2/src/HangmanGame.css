@@ -1,0 +1,97 @@
+.hangmangame{
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.hangmangame .msg{
+    font-weight: bolder;
+    height: 30px;
+    letter-spacing: 2px;
+    font-size: 22px;
+}
+.hangmangame .text{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 26px;
+    font-weight: bolder;
+    width: 280px;
+    margin-bottom: 30px;
+    margin-top: 20px;
+}
+.hangmangame .text p{
+    position: relative;
+    width: 36px;
+    height: 36px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #000;
+    color: #fff;
+    border: 2px solid #fff;
+    font-family: 'Courier New', Courier, monospace;
+}
+.hangmangame .text p.red{
+    color: red;
+}
+.hangmangame .keyboard{
+    position: relative;
+    width: 450px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.hangmangame .keyboard button{
+    border: none;
+    background: none;
+    outline: none;
+    position: relative;
+    width: 34px;
+    height: 34px;
+    text-align: center;
+    line-height: 34px;
+    margin: 4px;
+    background: #000;
+    color: #fff;
+    cursor: pointer;
+    transition: 0.4s;
+    font-weight: bolder;
+}
+.hangmangame .keyboard button:hover,
+.hangmangame .keyboard button.deactive{
+    color: #000;
+    background: #fff;
+    box-shadow: 0 0 5px 2px #0006;
+}
+button.restart{
+    padding: 10px 26px;
+    margin-top: 20px;
+    background: none;
+    border: none;
+    outline: none;
+    border: 1.75px solid #000;
+    cursor: pointer;
+    font-weight: bolder;
+    transition: 0.5s;
+    letter-spacing: 2px;
+}
+button.restart:hover{
+    background: #000;
+    color: #fff;
+}
+@media screen and (max-width:480px){
+    .hangmangame .keyboard{
+        width: 90%;
+    }
+}
+@media screen and (max-width:520px){
+    .hangmangame{
+        position: relative;
+        max-width: 100%;
+    }
+}
