@@ -63,7 +63,7 @@
     font-weight: bolder;
 }
 .hangmangame .keyboard button:hover,
-.hangmangame .keyboard button.deactive{
+.hangmangame .keyboard button:disabled{
     color: #000;
     background: #fff;
     box-shadow: 0 0 5px 2px #0006;
@@ -79,6 +79,7 @@ button.restart{
     font-weight: bolder;
     transition: 0.5s;
     letter-spacing: 2px;
+    margin-bottom: 30px;
 }
 button.restart:hover{
     background: #000;
