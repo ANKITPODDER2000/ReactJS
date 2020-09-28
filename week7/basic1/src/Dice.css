@@ -1,13 +1,14 @@
-div i{
+div.dice-block i{
     font-size: 180px;
     color : purple;
 }
-div i.roling{
-    animation: roll 1s;
+div.dice-block i.roling{
+    animation-name: roll;
+    animation-duration: 1s;
 }
 @keyframes roll{
     from{
-        transform: translate3d(0,0);
+        transform: translate3d(0,0,0);
     }
     15%{
         transform: translate3d(-25% , 0 ,0) rotate3d(0,0,1,-5deg);
@@ -25,6 +26,6 @@ div i.roling{
         transform: translate3d(-5% , 0 ,0) rotate3d(0,0,1,-1deg);
     }
     to{
-        transform: translate3d(0,0);
+        transform: translate3d(0,0,0);
     }
 }

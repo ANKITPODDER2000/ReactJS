@@ -16,19 +16,6 @@
     margin: 0px auto 30px;
     height: auto;
 }
-@media screen and (max-width : 400px){
-    .App .dice-container{
-        position: relative;
-        width: 80%;
-        display: flex;
-        margin: 0 auto;
-        justify-content: space-around;
-        align-items: center;
-    }
-    .App .dice-container div:nth-child(1){
-        margin-bottom: 30px;
-    }
-}
 
 .App button{
     display: block;
@@ -47,4 +34,18 @@
 .App button:hover{
     background: purple;
     color: #fff;
+}
+
+@media screen and (max-width : 400px){
+    .App .dice-container{
+        position: relative;
+        width: 80%;
+        display: flex;
+        margin: 0 auto;
+        justify-content: space-around;
+        align-items: center;
+    }
+    .App .dice-container div:nth-child(1){
+        margin-bottom: 30px;
+    }
 }

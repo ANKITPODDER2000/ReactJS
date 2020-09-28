@@ -9,7 +9,7 @@ class Dice extends Component{
             className += " roling"
         }
         return (
-            <div >
+            <div className="dice-block">
                 <i className={className}></i>
             </div>
         )

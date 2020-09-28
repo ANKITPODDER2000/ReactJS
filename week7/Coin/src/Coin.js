@@ -1,12 +1,14 @@
 import React, { Component } from "react";
+import tail from "./tail.jpg";
+import head from "./head.jpg";
 import './Coin.css'
 
 class Coin extends Component{
     constructor(props) {
         super(props);
         let img_arr = [
-            "https://tinyurl.com/react-coin-heads-jpg",
-            "https://tinyurl.com/react-coin-tails-jpg"
+            head,
+            tail
         ]
         this.state = {
             img_arr: img_arr,
@@ -48,8 +50,8 @@ class Coin extends Component{
     render() {
         return (
             <div className="coin">
-                <h1>Let's flip a coin</h1>
-                {this.state.count > 0 ? <img src={this.state.currentImg} width="300" /> : null}
+                <h1>Lets flip a coin</h1>
+                {this.state.count > 0 ? <img src={this.state.currentImg} alt="" width="300" /> : null}
                 <h3>Out of {this.state.count} {this.state.count <= 1 ? "flip" : "flips"} , there have been {this.state.heads} {this.state.heads<= 1 ? "head" : "heads"} and {this.state.tails}  {this.state.tails<= 1 ? "tail" : "tails"} !</h3>
                 <button onClick={this.toss}>Flip me</button>
             </div>

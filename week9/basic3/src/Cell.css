@@ -1,0 +1,10 @@
+td{
+    position: relative;
+    width: 60px;
+    height: 60px;
+    background: #fff;
+    transition: 0.5s;
+}
+td.light-on{
+    background: #176078;
+}
