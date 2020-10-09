@@ -1,0 +1,31 @@
+.game{
+    position: relative;
+    width: 100%;
+    height: auto;
+    background: #cc2b5e;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #753a88, #cc2b5e);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #753a88, #cc2b5e); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+    padding: 25px 0 30px;
+    text-align: center;
+    background-size: 150%;
+    background-position: 0;
+    animation: animate 5s infinite alternate;
+}
+@keyframes animate{
+    to{
+        background-position: 50%;
+    }
+}
+.game .header{
+    position: relative;
+    width: 100%;
+}
+.game .header h1{
+    font-size: 40px;
+    font-weight: normal;
+    margin-bottom: 6px;
+}
+.game .header h1 span{
+    font-size: 55px;
+}

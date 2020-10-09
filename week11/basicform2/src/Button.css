@@ -1,0 +1,28 @@
+button{
+    position: relative;
+    background: none;
+    border: none;
+    outline: none;
+    width: 150px;
+    height: 40px;
+    background: #0005;
+    font-size: 20px;
+    word-spacing: 2px;
+    line-height: 40px;
+    color: #fff;
+    cursor: pointer;
+    background: #0052D4;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #6FB1FC, #4364F7, #0052D4);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #6FB1FC, #4364F7, #0052D4); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    transition: 0.5s;
+}
+button:hover{
+    box-shadow: 0 0 10px 1px #fff6;
+}
+button:disabled{
+    opacity: 0.6;
+    cursor: no-drop;
+}
+button:disabled:hover{
+    box-shadow: none;
+}
