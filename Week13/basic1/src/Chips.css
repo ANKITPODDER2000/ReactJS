@@ -1,0 +1,44 @@
+.container{
+    position: relative;
+    width: 100%;
+    height: calc(100vh - 60px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.container .text-container{
+    position: relative;
+    width: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background: #000;
+    z-index: 10;
+    color: #fff;
+}
+.container .text-container p{
+    margin-bottom: 20px;
+}
+.container .text-container button{
+    position: relative;
+    margin-bottom: 20px;
+    padding: 7px 20px;
+    border: none;
+    background: none;
+    outline: none;
+    background: #fff;
+    cursor: pointer;
+    color : #fff,
+}
+.container .text-container a{
+    color: #fff;
+    border-color: #fff;
+}
+.container .text-container a:hover{
+    background: #fff;
+    color: #000;
+}
+.container img.lays{
+    position: absolute;
+}
