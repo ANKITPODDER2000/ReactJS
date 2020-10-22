@@ -1,0 +1,57 @@
+.home{
+    position: relative;
+    width: 100%;
+    padding: 60px 20%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.home .dog{
+    position: relative;
+    width: 240px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background: none;
+    box-shadow: none;
+}
+.home .dog img{
+    position: relative;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    box-shadow: 0 0 5px #000,
+                0 0 15px #0005,
+                0 0 30px #0008;
+    cursor: pointer;
+    filter: grayscale(1);
+    transition: 0.5s;
+}
+.home .dog img:hover{
+    filter: grayscale(0);
+}
+.home .dog h1{
+    position: relative;
+    font-size: 24px;
+    margin-top: 20px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    display: inline;
+}
+.home .dog h1::before{
+    position: absolute;
+    content: '';
+    bottom: -5px;
+    left: -10%;
+    width: 120%;
+    height: 3px;
+    background: #000;
+    transform-origin: left;
+    transform: scaleX(0);
+    transition: 0.4s;
+}
+.home .dog img:hover ~ h1::before{
+    transform: scaleX(1);
+}

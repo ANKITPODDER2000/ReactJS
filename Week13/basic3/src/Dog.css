@@ -1,0 +1,60 @@
+.dog{
+    position: relative;
+    width: 400px;
+    display: block;
+    margin: 0 auto;
+    margin-top: 30px;
+    background: #fff;
+    padding-bottom: 30px;
+    box-shadow: 0 0 5px #000,
+                0 0 15px #0009,
+                0 0 35px #0008;
+}
+.dog img{
+    position: relative;
+    width: 100%;
+}
+.dog h1{
+    margin-left: 5%;
+    position: relative;
+    margin-top: 10px;
+    font-size: 26px;
+    font-weight: bold;
+}
+.dog p{
+    margin-left: 5%;
+    margin-top: 0px;
+    font-size: 22px;
+    margin-bottom: 15px;
+}
+.dog .facts{
+    width: 90%;
+    margin-left: 5%;
+    position: relative;
+    height: 30px;
+    font-size: 17px;
+}
+.dog .facts li{
+    list-style-type: none;
+    margin: 10px 0;
+}
+.dog button{
+    position: relative;
+    position: relative;
+    display: block;
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 20px;
+    padding: 10px 0;
+    border: none;
+    background: none;
+    outline: none;
+    border: 2px solid #000;
+    transition: 0.5s;
+    cursor: pointer;
+    font-size: 17px;
+}
+.dog button:hover{
+    color: #fff;
+    background: #000;
+}
