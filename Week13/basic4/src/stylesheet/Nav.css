@@ -48,3 +48,7 @@ nav .level{
     height: 13px;
     margin-top: -3px;
 }
+#root > div > div > nav > div.MuiInputBase-root.MuiInput-root.MuiInput-underline{
+    position: absolute;
+    right: 50px;
+}
