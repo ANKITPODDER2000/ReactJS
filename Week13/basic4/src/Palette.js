@@ -2,8 +2,7 @@ import React , {Component} from "react";
 import ColorBox from "./ColorBox";
 import { v4 as uuid } from "uuid";
 import Slider from "rc-slider";
-import "rc-slider/assets/index.css"
-
+import "rc-slider/assets/index.css";
 import "./stylesheet/Palette.css";
 
 class Palette extends Component{
@@ -26,13 +25,15 @@ class Palette extends Component{
         return (
             <div className="Palette">
                 {/* Navbar goes here */}
-                <Slider
-                    defaultValue={this.state.value}
-                    min={100}
-                    max={900}
-                    step={100}
-                    onAfterChange = {this.handleChange}
-                />
+                <div className="slider">
+                    <Slider
+                        defaultValue={this.state.value}
+                        min={100}
+                        max={900}
+                        step={100}
+                        onAfterChange = {this.handleChange}
+                    />
+                </div>
                 <div className="Palette-colors">
                     {/* ColorBox goes here */}
                     {colorbox}
