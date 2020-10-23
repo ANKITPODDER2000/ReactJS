@@ -26,7 +26,14 @@
     opacity: 0;
     transition: 0.5s;
 }
-.ColorBox:hover .copy-btn{
+.ColorBox .copy-container{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+.ColorBox .copy-container:hover .copy-btn{
     opacity: 1;
 }
 .box-content{
@@ -81,6 +88,7 @@
     flex-direction: column;
     transform: scale(0.1);
     opacity: 0;
+    pointer-events: none;
 }
 .copy-msg.active{
     opacity: 1;
