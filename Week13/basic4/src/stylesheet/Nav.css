@@ -1,0 +1,50 @@
+nav{
+    position: relative;
+    width: 100%;
+    height: 6vh;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+nav .logo{
+    padding: 0 13px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #eceff1;
+    margin-right: 15px;
+}
+nav .logo a{
+    text-decoration: none;
+    color: #000;
+    letter-spacing: 1px;
+}
+nav .level{
+    position: relative;
+    margin-right: 13px;
+}
+.slider{
+    position: relative;
+    display: inline-block;
+    width: 340px;
+    margin: 0 10px;
+}
+.rc-slider-track{
+    background-color: transparent;
+}
+.rc-slider-rail{
+    height: 8px;
+}
+.rc-slider-handle,
+.rc-slider-handle:hover,
+.rc-slider-handle:focus,
+.rc-slider-handle:active{
+    background-color: green;
+    outline: none;
+    border: 2px solid green;
+    box-shadow: none;
+    width: 13px;
+    height: 13px;
+    margin-top: -3px;
+}
