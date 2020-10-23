@@ -41,6 +41,10 @@ class Palette extends Component{
                     {colorbox}
                 </div>
                 {/* Footer goes here */}
+                <footer>
+                    <p>{this.props.paletteName}</p>
+                    <p>{this.props.emoji}</p>
+                </footer>
             </div>
         )
     }

@@ -22,7 +22,7 @@ class Nav extends Component {
         this.setState({
             format: evt.target.value,
             open : true
-        } , ()=> console.log(this.state))
+        })
         this.props.handleFormat(evt);
     }
 

@@ -7,6 +7,7 @@ class App extends Component{
     render() {
         let color = generatePalette(seedColor[2]);
         console.log(color);
+        console.log(seedColor[2])
         return (
             <div className="App">
                 <Palette {...color}/>
