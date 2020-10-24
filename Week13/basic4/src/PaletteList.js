@@ -3,6 +3,7 @@ import MiniPalette from "./MiniPalette";
 import { Link } from "react-router-dom";
 import { withRouter } from "react-router-dom";
 import { withStyles } from "@material-ui/styles";
+import bg from "./bg.svg";
 
 const style = {
     root: {
@@ -10,6 +11,7 @@ const style = {
         width: "100%",
         minHeight: "100vh",
         background: "blue",
+        background : `url(${bg})`
     },
     nav: {
         position: 'relative',

@@ -1,5 +1,6 @@
 import React , {Component} from 'react';
 import { withStyles } from "@material-ui/styles";
+import { withRouter } from "react-router-dom";
 
 const style = {
     container: {
@@ -32,8 +33,8 @@ const style = {
     smallColorContainer: {
         position: 'relative',
         display: "inline-block",
-        width: "25%",
-        height: "20%",
+        width: "20%",
+        height: "25%",
         margin: "0 auto",
         marginBottom : "-4px"
     },
@@ -51,7 +52,10 @@ class MiniPalette extends Component{
     render() {
         const { classes , paletteName , emoji , colors , id} = this.props;
         return (
-            <div className={classes.container}>
+            <div
+                className={classes.container}
+                onClick={() => this.props.history.push(`/palette/${id}`)}
+            >
                 <div className={classes.colorContainer}>
                     {colors.map(color => 
                         <div className={classes.smallColorContainer} style={{background : color.color}}></div>    
@@ -66,4 +70,4 @@ class MiniPalette extends Component{
     }
 }
 
-export default withStyles(style)(MiniPalette);
+export default withStyles(style)(withRouter(MiniPalette));

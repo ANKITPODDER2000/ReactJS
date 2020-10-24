@@ -10,6 +10,9 @@ import CloseIcon from '@material-ui/icons/Close';
 import IconButton from '@material-ui/core/IconButton';
 
 class Nav extends Component {
+    static defaultProps = {
+        sizeBig : false
+    }
     constructor(props) {
         super(props);
         this.state = {
@@ -38,18 +41,24 @@ class Nav extends Component {
                 <div className="logo">
                     <Link to="/">ReactColorPicker</Link>
                 </div>
-                <div className="level">
-                    <span>Level : {this.props.value}</span>
-                </div>
-                <div className="slider">
-                    <Slider
-                        defaultValue={this.props.value}
-                        min={100}
-                        max={900}
-                        step={100}
-                        onAfterChange = {this.props.handleChange}
-                    />
-                </div>
+                {!this.props.sizeBig
+                    ? <div className="level">
+                        <span>Level : {this.props.value}</span>
+                    </div>
+                    : null
+                }
+                {!this.props.sizeBig
+                    ?<div className="slider">
+                        <Slider
+                            defaultValue={this.props.value}
+                            min={100}
+                            max={900}
+                            step={100}
+                            onAfterChange = {this.props.handleChange}
+                        />
+                    </div>
+                    :null
+                }
                 <Select value={this.state.format} onChange={this.handleFormat_}>
                     <MenuItem value="hex">HEX - #ffffff</MenuItem>
                     <MenuItem value="rgb">rgb - rgb(255 , 255 , 255)</MenuItem>

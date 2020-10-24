@@ -1,8 +1,10 @@
 import React , {Component} from "react";
 import ColorBox from "./ColorBox";
+import { Link } from "react-router-dom";
 import { v4 as uuid } from "uuid";
 import Nav from "./Nav";
 import "./stylesheet/Palette.css";
+import Footer from "./Footer";
 
 class Palette extends Component{
     constructor(props) {
@@ -26,7 +28,13 @@ class Palette extends Component{
     }
     render() {
         let colorbox = this.props.colors[this.state.value].map(color =>
-            <ColorBox key={uuid()} background={color[this.state.format]} name={color.name}/>
+            <ColorBox
+                key={uuid()}
+                background={color[this.state.format]}
+                name={color.name}
+                paletteId={this.props.id}
+                colorId = {color.id}
+            />
         );
         return (
             <div className="Palette">
@@ -41,10 +49,10 @@ class Palette extends Component{
                     {colorbox}
                 </div>
                 {/* Footer goes here */}
-                <footer>
-                    <p>{this.props.paletteName}</p>
-                    <p>{this.props.emoji}</p>
-                </footer>
+                <Footer
+                    paletteName={this.props.paletteName}
+                    emoji = {this.props.emoji}
+                />
             </div>
         )
     }
