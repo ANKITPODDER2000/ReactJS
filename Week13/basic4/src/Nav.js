@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
 import "./stylesheet/Nav.css";
+import { Link } from "react-router-dom";
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import Snackbar from '@material-ui/core/Snackbar';
@@ -35,7 +36,7 @@ class Nav extends Component {
         return (
             <nav>
                 <div className="logo">
-                    <a href="">ReactColorPicker</a>
+                    <Link to="/">ReactColorPicker</Link>
                 </div>
                 <div className="level">
                     <span>Level : {this.props.value}</span>
