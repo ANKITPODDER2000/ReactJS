@@ -5,14 +5,24 @@ import seedColor from "./seedColor";
 import { generatePalette } from "./ColorHelpers";
 
 class App extends Component{
+    getColor(id) {
+        let flag = -1;
+        for (let i = 0; i < seedColor.length; i++){
+            if (seedColor[i].id === id) {
+                flag = i;
+                break;
+            }
+        }
+        if (flag === -1) return <h1>COLOR PALETTE NOT FOUND!</h1>
+        return <Palette {...generatePalette(seedColor[flag])}/>
+    }
     render() {
-        let color = generatePalette(seedColor[2]);
-        console.log(color);
-        console.log(seedColor[2])
         return (
             <Switch>
-                <Route exact path="/" render={()=><h1>HELLO THIS IS HOME</h1>}></Route>
-                <Route exact path="/palette/:id" render={()=><h1>HELLO THIS IS PALETTE !</h1>}></Route>
+                <Route exact path="/" render={()=><h1>HELLO THIS IS HOME</h1>} />
+                <Route exact path="/palette/:id" render={(details) =>
+                    this.getColor(details.match.params.id)}
+                />
             </Switch>
         )
     }
