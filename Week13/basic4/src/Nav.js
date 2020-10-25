@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
-import "./stylesheet/Nav.css";
+import { withStyles } from "@material-ui/styles";
 import { Link } from "react-router-dom";
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import Snackbar from '@material-ui/core/Snackbar';
 import CloseIcon from '@material-ui/icons/Close';
 import IconButton from '@material-ui/core/IconButton';
+import style from "./stylesheet/Nav";
 
 class Nav extends Component {
     static defaultProps = {
@@ -36,8 +37,9 @@ class Nav extends Component {
         })
     }
     render() {
+        let { classes } = this.props;
         return (
-            <nav>
+            <nav className={classes.nav}>
                 <div className="logo">
                     <Link to="/">ReactColorPicker</Link>
                 </div>
@@ -48,7 +50,7 @@ class Nav extends Component {
                     : null
                 }
                 {!this.props.sizeBig
-                    ?<div className="slider">
+                    ?<div className={classes.slider}>
                         <Slider
                             defaultValue={this.props.value}
                             min={100}
@@ -59,7 +61,7 @@ class Nav extends Component {
                     </div>
                     :null
                 }
-                <Select value={this.state.format} onChange={this.handleFormat_}>
+                <Select className={classes.select} value={this.state.format} onChange={this.handleFormat_}>
                     <MenuItem value="hex">HEX - #ffffff</MenuItem>
                     <MenuItem value="rgb">rgb - rgb(255 , 255 , 255)</MenuItem>
                     <MenuItem value="rgba">rgba - rgba(255 , 255 , 255 ,1)</MenuItem>
@@ -94,4 +96,4 @@ class Nav extends Component {
     }
 }
 
-export default Nav;
+export default withStyles(style)(Nav);

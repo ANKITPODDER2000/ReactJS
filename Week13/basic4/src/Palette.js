@@ -1,10 +1,10 @@
 import React , {Component} from "react";
 import ColorBox from "./ColorBox";
-import { Link } from "react-router-dom";
 import { v4 as uuid } from "uuid";
+import { withStyles } from "@material-ui/styles";
 import Nav from "./Nav";
-import "./stylesheet/Palette.css";
 import Footer from "./Footer";
+import style from "./stylesheet/Palette";
 
 class Palette extends Component{
     constructor(props) {
@@ -27,6 +27,7 @@ class Palette extends Component{
         })
     }
     render() {
+        let { classes } = this.props;
         let colorbox = this.props.colors[this.state.value].map(color =>
             <ColorBox
                 key={uuid()}
@@ -37,14 +38,14 @@ class Palette extends Component{
             />
         );
         return (
-            <div className="Palette">
+            <div className={classes.Palette}>
                 {/* Navbar goes here */}
                 <Nav
                     value={this.state.value}
                     handleChange={this.handleChange}
                     handleFormat={this.handleFormat}
                 />
-                <div className="Palette-colors">
+                <div className={classes.PaletteColors}>
                     {/* ColorBox goes here */}
                     {colorbox}
                 </div>
@@ -58,4 +59,4 @@ class Palette extends Component{
     }
 }
 
-export default Palette;
+export default withStyles(style)(Palette);

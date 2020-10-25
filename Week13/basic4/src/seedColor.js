@@ -214,7 +214,7 @@ export default [
       { name: "HighlighterLavender", color: "#82589F" }
     ]
   },
-  {
+  /*{
     paletteName: "Flat UI Colors French",
     id: "flat-ui-colors-french",
     emoji: "🔥",
@@ -240,5 +240,5 @@ export default [
       { name: "ForestBlues", color: "#0a3d62" },
       { name: "ReefEncounter", color: "#079992" }
     ]
-  }
+  }*/
 ];
