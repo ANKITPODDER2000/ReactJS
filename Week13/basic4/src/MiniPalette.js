@@ -2,6 +2,7 @@ import React , {Component} from 'react';
 import { withStyles } from "@material-ui/styles";
 import { withRouter } from "react-router-dom";
 import style from "./stylesheet/MiniPalette";
+import { v4 as uuid } from "uuid";
 
 class MiniPalette extends Component{
     render() {
@@ -13,7 +14,7 @@ class MiniPalette extends Component{
             >
                 <div className={classes.colorContainer}>
                     {colors.map(color => 
-                        <div className={classes.smallColorContainer} style={{background : color.color}}></div>    
+                        <div key={uuid()} className={classes.smallColorContainer} style={{background : color.color}}></div>    
                     )}
                 </div>
                 <div className={classes.details}>

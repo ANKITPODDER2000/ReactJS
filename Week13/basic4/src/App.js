@@ -8,27 +8,39 @@ import { generatePalette } from "./ColorHelpers";
 import NewPaletteForm from "./NewPaletteForm";
 
 class App extends Component{
+    constructor(props) {
+        super(props);
+        this.state = {
+            palette : seedColor
+        }
+        this.savePalette = this.savePalette.bind(this);
+    }
+    savePalette(newPalette) {
+        this.setState({
+            palette : [...this.state.palette , newPalette]
+        })
+    }
     getColor(id) {
         let flag = -1;
-        for (let i = 0; i < seedColor.length; i++){
-            if (seedColor[i].id === id) {
+        for (let i = 0; i < this.state.palette.length; i++){
+            if (this.state.palette[i].id === id) {
                 flag = i;
                 break;
             }
         }
         if (flag === -1) return <h1>COLOR PALETTE NOT FOUND!</h1>
-        return <Palette {...generatePalette(seedColor[flag])}/>
+        return <Palette {...generatePalette(this.state.palette[flag])}/>
     }
     getShades(paletteId, colorId) {
         let flag = -1;
-        for (let i = 0; i < seedColor.length; i++){
-            if (seedColor[i].id === paletteId) {
+        for (let i = 0; i < this.state.palette.length; i++){
+            if (this.state.palette[i].id === paletteId) {
                 flag = i;
                 break;
             }
         }
         if (flag === -1) return <h1>COLOR PALETTE NOT FOUND!</h1>
-        let color = generatePalette(seedColor[flag]).colors;
+        let color = generatePalette(this.state.palette[flag]).colors;
         let colorArr = [];
         for (let intensity in color) {
             if (intensity !== "50") {
@@ -45,7 +57,7 @@ class App extends Component{
         let arr = {
             colors: colorArr,
             paletteId: paletteId,
-            emoji : seedColor[flag].emoji
+            emoji : this.state.palette[flag].emoji
         }
         return <ShadePalette {...arr}/>
     }
@@ -56,12 +68,12 @@ class App extends Component{
                     exact path="/"
                     render={() =>
                         <PaletteList
-                            color={seedColor}
+                            color={this.state.palette}
                         />}
                 />
                 <Route
                     exact path="/palette/new"
-                    render = {() => <NewPaletteForm />}
+                    render={() => <NewPaletteForm savePalette={this.savePalette}/>}
                 />
                 <Route
                     exact path="/palette/:id"

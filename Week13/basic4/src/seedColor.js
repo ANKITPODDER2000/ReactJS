@@ -133,7 +133,7 @@ export default [
       { name: "WizardGrey", color: "#535c68" }
     ]
   },
-  {
+  /*{
     paletteName: "Flat UI Colors British",
     id: "flat-ui-colors-british",
     emoji: "👹",
@@ -214,7 +214,7 @@ export default [
       { name: "HighlighterLavender", color: "#82589F" }
     ]
   },
-  /*{
+  {
     paletteName: "Flat UI Colors French",
     id: "flat-ui-colors-french",
     emoji: "🔥",

@@ -13,13 +13,13 @@ const style = {
 
 class DraggableColorBox extends Component {
     render() {
-        const { color , classes} = this.props;
+        const { color , name , classes} = this.props;
         return (
             <div
                 style={{ background: color }}
                 className={classes.root}
             >
-                <h3>{color}</h3>
+                <h3>{name}</h3>
             </div>
         );
     }
