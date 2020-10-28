@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
 import { withStyles } from "@material-ui/styles";
+import DeleteIcon from '@material-ui/icons/Delete';
+import style from "./stylesheet/DraggableColorBox";
 
-const style = {
-    root: {
-        position: 'relative',
-        width: '20%',
-        height: '25%',
-        display: 'inline-block',
-        margin: '0 auto',
-    }
-}
 
 class DraggableColorBox extends Component {
+    constructor(props) {
+        super(props);
+        this.deleteColor = this.deleteColor.bind(this);
+    }
+    deleteColor() {
+        this.props.deleteColor(this.props.name);
+    }
     render() {
         const { color , name , classes} = this.props;
         return (
@@ -19,7 +19,13 @@ class DraggableColorBox extends Component {
                 style={{ background: color }}
                 className={classes.root}
             >
-                <h3>{name}</h3>
+                <div className={classes.textContainer}>
+                    <p>{name}</p>
+                    <DeleteIcon
+                        className={classes.icon}
+                        onClick={this.deleteColor}
+                    />
+                </div>
             </div>
         );
     }
