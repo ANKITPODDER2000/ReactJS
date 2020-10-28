@@ -12,11 +12,10 @@ import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import Button from "@material-ui/core/Button";
 import { ChromePicker } from "react-color";
-import DraggableColorBox from "./DraggableColorBox";
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import { withRouter } from "react-router-dom";
-import { v4 as uuid } from "uuid";
-import chroma from "chroma-js";
+import NewPaletteColorList from "./NewPaletteColorList";
+import { arrayMove } from "react-sortable-hoc";
 
 const drawerWidth = 340;
 function RGBAToHexA(r,g,b,a) {
@@ -126,7 +125,7 @@ class NewPaletteForm extends Component {
         let Palette = {
             paletteName: paletteName,
             id: paletteName.toLowerCase().replaceAll(" ", "-"),
-            emoji: '😍',
+            emoji: '😎',
             colors : this.state.colors
         }
         this.props.savePalette(Palette);
@@ -187,7 +186,11 @@ class NewPaletteForm extends Component {
             this.props.palette.every(({ paletteName }) => paletteName.toLowerCase() !== this.state.paletteName.toLowerCase())
         );
     }
-
+    onSortEnd = ({oldIndex, newIndex}) => {
+        this.setState(({colors}) => ({
+            colors: arrayMove(colors, oldIndex, newIndex),
+        }));
+    };
     render() {
         const { classes } = this.props;
         const { open } = this.state;
@@ -311,14 +314,12 @@ class NewPaletteForm extends Component {
                 >
                     <div className={classes.drawerHeader} />
                     <div style={{position:"relative" , width:"100%" , height:"100%"}}>
-                        {this.state.colors.map(color =>
-                            <DraggableColorBox
-                                key={uuid()}
-                                color={color.color}
-                                name={color.name}
-                                deleteColor={this.deleteColor}
-                            />
-                        )}
+                        <NewPaletteColorList
+                            colors={this.state.colors}
+                            deleteColor={this.deleteColor}
+                            axis='xy'
+                            onSortEnd={this.onSortEnd}
+                        />
                     </div>
                 </main>
             </div>

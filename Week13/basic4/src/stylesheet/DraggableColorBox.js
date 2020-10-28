@@ -7,6 +7,10 @@ export default{
         display: 'inline-block',
         margin: '0 auto',
         marginBottom: '-5.05px',
+        "&:hover svg": {
+            color: props => chroma(props.color).luminance() <= 0.13 ? "#fff" : "#000",
+            transform : 'scale(1.4)'
+        }
     },
     textContainer: {
         position : 'absolute',
@@ -18,7 +22,7 @@ export default{
         alignItems : 'center',
         padding: '0 15px',
         "& p" : {
-            fontSize: '18px',
+            fontSize: '16px',
             color: props => chroma(props.color).luminance() <= 0.13 ? "#fff" : "#000",
         },
     },
@@ -27,9 +31,5 @@ export default{
         cursor: 'pointer',
         transition: '0.3s ease-in',
         color: props => chroma(props.color).luminance() <= 0.13 ? "#fff9" : "#0009",
-        "&:hover": {
-            color: props => chroma(props.color).luminance() <= 0.13 ? "#fff" : "#000",
-            transform : 'scale(1.4)'
-        }
     }
 }
