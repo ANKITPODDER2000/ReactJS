@@ -9,16 +9,16 @@ export default {
         margin: '0 auto',
         marginBottom: '-4px',
         [Size.media('1200')]: {
-            width: '25%',
+            width: props => props.sizeBig ? '20%' : '25%',
             height: props => props.sizeBig ? "50%" : "20%",
         },
         [Size.media('980')]: {
-            width: '50%',
-            height: props => props.sizeBig ? "50%" : "10%",
+            width: props => props.sizeBig ? '50%' : '50%',
+            height: props => props.sizeBig ? "20%" : "10%",
         },
         [Size.media('580')]: {
-            width: '100%',
-            height: props => props.sizeBig ? "50%" : "5%",
+            width: props => props.sizeBig ? '100%' : '100%',
+            height: props => props.sizeBig ? "10%" : "5%",
         }
     },
     copyBtn : {
@@ -40,10 +40,10 @@ export default {
         opacity: '0',
         transition: '0.5s',
         [Size.media('580')]: {
-            height:'100%'
+            height: props => !props.sizeBig ? '100%' : '30px',
         },
         [Size.media('420')]: {
-            width: '70px'
+            width: props => !props.sizeBig ? '70px' : '100px',
         }
     },
     copyContainer : {
@@ -149,17 +149,16 @@ export default {
             width: '140px',
             padding: '0',
             height: '100%',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            textAlign:'center'
+            display: "flex",
+            alignItems : 'center',
+            paddingLeft : '10px',
         },
         "& span": {
             [Size.media('420')]: {
                 fontSize: '10px'
             },
             [Size.media('340')]: {
-                fontSize: '8px'
+                fontSize: '9px'
             }
         }
     }
