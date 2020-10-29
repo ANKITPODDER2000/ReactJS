@@ -37,12 +37,6 @@ class NewPaletteFormNav extends Component {
                         </Typography>
                     </Toolbar>
                     <div className={classes.formContainer}>
-                        <PaletteNameForm
-                            classes={classes}
-                            savePalette={savePalette}
-                            paletteName={paletteName}
-                            handleChange={handleChange}
-                        />
                         {/*<ValidatorForm
                             className={classes.form}
                             onSubmit={savePalette}
@@ -72,9 +66,15 @@ class NewPaletteFormNav extends Component {
                         <Button
                             variant="contained"
                             color="secondary"
-                            style={{ marginLeft: "15px" }}
+                            style={{ marginRight: "15px" }}
                             onClick={() => this.props.history.goBack()}
                         >Go Back</Button>
+                        <PaletteNameForm
+                            classes={classes}
+                            savePalette={savePalette}
+                            paletteName={paletteName}
+                            handleChange={handleChange}
+                        />
                     </div>
                 </AppBar>
             </div>

@@ -4,6 +4,7 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import DialogContentText from '@material-ui/core/DialogContentText';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 
 class PaletteNameForm extends Component {
@@ -31,21 +32,24 @@ class PaletteNameForm extends Component {
 		const { classes,savePalette,paletteName,handleChange } = this.props;
 		return (
 			<div>
-				<Button variant="outlined" color="primary" onClick={this.handleClickOpen}>
-					Open form dialog
+				<Button variant="contained" color="primary" onClick={this.handleClickOpen}>
+					SAVE
 				</Button>
 				<Dialog open={open} onClose={this.handleClose} aria-labelledby="form-dialog-title">
-					<DialogTitle id="form-dialog-title">Subscribe</DialogTitle>
-					<DialogContent>
-						<ValidatorForm
-                            className={classes.form}
-                            onSubmit={savePalette}
-                            ref="form"
-                        >
+					<DialogTitle id="form-dialog-title">Choose a Palette Name</DialogTitle>
+					<ValidatorForm
+						onSubmit={savePalette}
+						ref="form"
+					>
+						<DialogContent>
+							<DialogContentText>
+								Plese Enter a name for your new beautiful Palette. Make sure it's unique!
+							</DialogContentText>
                             <TextValidator
                                 value={paletteName}
-                                style={{ margin: "0 15px 0 20px" }}
-                                placeholder="Palette Name"
+								label="Palette Name"
+								fullWidth
+								margin="normal"
                                 name="paletteName"
                                 validators={['required', 'isPaletteNameUnique']}
                                 errorMessages={[
@@ -54,24 +58,21 @@ class PaletteNameForm extends Component {
                                 ]}
                                 onChange={handleChange}
                             />
-                            <Button
-                                variant="contained"
-                                color="primary"
-                                type="submit"
-                                style={{maxHeight:'36px'}}
-                            >
-                                SAVE PALETTE
-                            </Button>
-                        </ValidatorForm>
-					</DialogContent>
-					<DialogActions>
-					<Button onClick={this.handleClose} color="primary">
-						Cancel
-					</Button>
-					<Button onClick={this.handleClose} color="primary">
-						Subscribe
-					</Button>
-					</DialogActions>
+						</DialogContent>
+						<DialogActions>
+						<Button onClick={this.handleClose} color="primary">
+							Cancel
+						</Button>
+						<Button
+							variant="contained"
+							color="primary"
+							type="submit"
+							style={{maxHeight:'36px'}}
+						>
+							SAVE PALETTE
+						</Button>
+						</DialogActions>
+					</ValidatorForm>
 				</Dialog>
 			</div>
 		);
