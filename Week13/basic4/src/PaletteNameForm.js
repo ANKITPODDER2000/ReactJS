@@ -13,35 +13,48 @@ class PaletteNameForm extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			open : false
+			stage : ''
 		}
 		this.handleClickOpen = this.handleClickOpen.bind(this);
 		this.handleClose     = this.handleClose.bind(this);
+		this.showEmojiPicker = this.showEmojiPicker.bind(this);
+		this.savePalette     = this.savePalette.bind(this);
 	}
 	handleClickOpen(){
 		this.setState({
-			open : true
+			stage : 'form'
 		})
 	};
 
 	handleClose(){
 		this.setState({
-			open : false
+			stage : ''
 		})
 	};
+	showEmojiPicker() {
+		this.setState({
+			stage: 'emoji'
+		})
+	}
+	savePalette(emoji) {
+		this.props.savePalette(emoji.native);
+	}
 	render() {
-		const { open } = this.state;
-		const { savePalette,paletteName,handleChange } = this.props;
+		const { stage } = this.state;
+		const { paletteName,handleChange } = this.props;
 		return (
 			<div>
 				<Button variant="contained" color="primary" onClick={this.handleClickOpen}>
 					SAVE
 				</Button>
-				<Dialog open={open} onClose={this.handleClose} aria-labelledby="form-dialog-title">
+				<Dialog open={stage === 'emoji'}>
+					<DialogTitle id="form-dialog-title">Choose a Palette Emoji</DialogTitle>
+					<Picker theme="light" set='google' onSelect={this.savePalette} title="Pick a Palette Emoji"/>
+				</Dialog>
+				<Dialog open={stage === 'form'} onClose={this.handleClose} aria-labelledby="form-dialog-title">
 					<DialogTitle id="form-dialog-title">Choose a Palette Name</DialogTitle>
-					<Picker />
 					<ValidatorForm
-						onSubmit={savePalette}
+						onSubmit={this.showEmojiPicker}
 						ref="form"
 					>
 						<DialogContent>
