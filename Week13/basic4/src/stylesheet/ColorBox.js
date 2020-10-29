@@ -1,12 +1,25 @@
 import chroma from "chroma-js";
+import Size from "./Const";
 export default {
-    ColorBox : {
+    ColorBox: {
         position: 'relative',
         width: '20%',
         height: props => props.sizeBig ? "50%" : "25%",
         display: 'inline-block',
         margin: '0 auto',
         marginBottom: '-4px',
+        [Size.media('1200')]: {
+            width: '25%',
+            height: props => props.sizeBig ? "50%" : "20%",
+        },
+        [Size.media('980')]: {
+            width: '50%',
+            height: props => props.sizeBig ? "50%" : "10%",
+        },
+        [Size.media('580')]: {
+            width: '100%',
+            height: props => props.sizeBig ? "50%" : "5%",
+        }
     },
     copyBtn : {
         position: 'absolute',
@@ -25,7 +38,13 @@ export default {
         fontSize: '1rem',
         textTransform: 'uppercase',
         opacity: '0',
-        transition: '0.5s'
+        transition: '0.5s',
+        [Size.media('580')]: {
+            height:'100%'
+        },
+        [Size.media('420')]: {
+            width: '70px'
+        }
     },
     copyContainer : {
         position: 'absolute',
@@ -65,11 +84,17 @@ export default {
             textAlign: 'center',
             textTransform: 'uppercase',
             fontWeight: '400',
+            [Size.media('340')]: {
+                fontSize : '3.5rem'
+            }
         },
         "& p" : {
             fontSize: '2rem',
             fontWeight: '100',
             color: props => chroma(props.background).luminance() <= 0.13 ? "#fff" : "#000",
+            [Size.media('340')]: {
+                fontSize : '1.5rem'
+            }
         }
     },
     activeMsg : {
@@ -105,6 +130,10 @@ export default {
         background: props => chroma(props.background).luminance() <= 0.13 ? "#0004" : "#fff4",
         textDecoration: 'none',
         color: props => chroma(props.background).luminance() <= 0.13 ? "#fff" : "#0008",
+        transition: '0.5s',
+        [Size.media('580')]: {
+            height:'100%'
+        }
     },
     boxContent : {
         position: 'absolute',
@@ -116,5 +145,22 @@ export default {
         letterSpacing: '1px',
         textTransform: ' uppercase',
         color: props => chroma(props.background).luminance() <= 0.13 ? "#fff" : "#000",
+        [Size.media('420')]: {
+            width: '140px',
+            padding: '0',
+            height: '100%',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            textAlign:'center'
+        },
+        "& span": {
+            [Size.media('420')]: {
+                fontSize: '10px'
+            },
+            [Size.media('340')]: {
+                fontSize: '8px'
+            }
+        }
     }
 }
