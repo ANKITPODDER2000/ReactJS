@@ -32,4 +32,4 @@ class DraggableColorBox extends Component {
     }
 }
 
-export default withStyles(style)(SortableElement(DraggableColorBox));
+export default SortableElement(withStyles(style)(DraggableColorBox));

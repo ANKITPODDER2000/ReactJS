@@ -1,21 +1,13 @@
 import React, { Component } from "react";
 import classNames from "classnames";
 import { withStyles } from "@material-ui/core/styles";
-import Drawer from "@material-ui/core/Drawer";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
-import Divider from "@material-ui/core/Divider";
-import IconButton from "@material-ui/core/IconButton";
-import MenuIcon from "@material-ui/icons/Menu";
-import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
-import Button from "@material-ui/core/Button";
-import { ChromePicker } from "react-color";
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import { withRouter } from "react-router-dom";
 import NewPaletteColorList from "./NewPaletteColorList";
-import { arrayMove } from "react-sortable-hoc";
+import  arrayMove from "array-move";
+import NewPaletteFormNav from "./NewPaletteFormNav";
+import NewPaletteFormSlideBar from "./NewPaletteFormSlideBar";
+import ntc from "./ntc";
 
 const drawerWidth = 340;
 function RGBAToHexA(r,g,b,a) {
@@ -43,7 +35,12 @@ const styles = theme => ({
     transition: theme.transitions.create(["margin", "width"], {
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.leavingScreen
-    })
+    }),
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        flexDirection: 'row',
+        height: '64px',
     },
     appBarShift: {
     width: `calc(100% - ${drawerWidth}px)`,
@@ -90,6 +87,38 @@ const styles = theme => ({
         duration: theme.transitions.duration.enteringScreen
     }),
     marginLeft: 0
+    },
+    formContainer: {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginRight: '50px',
+        height: '64px'
+    },
+    form: {
+        display: 'flex',
+        height: '100%',
+        flexDirection: 'row',
+        alignItems: 'center'
+    },
+    navContainer: {
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        paddingTop: '30px'
+    },
+    SlideBtns: {
+        position: 'relative',
+        width: '100%',
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        marginBottom: '30px',
+    },
+    picker: {
+        width: '250px !important',
+        marginBottom : '25px'
     }
 });
 
@@ -141,9 +170,10 @@ class NewPaletteForm extends Component {
         })
     }
     handleRandomColor() {
-        let randomColor = RGBAToHexA(Math.floor(Math.random() * 255) , Math.floor(Math.random() * 255),Math.floor(Math.random() * 255), 1);
+        let randomColor = RGBAToHexA(Math.floor(Math.random() * 255), Math.floor(Math.random() * 255), Math.floor(Math.random() * 255), 1);
         this.setState({
-        color : randomColor
+            color : randomColor,
+            colorName:ntc.name(randomColor.slice(0,7))[1],
         })
     }
     handleDrawerOpen(){
@@ -179,9 +209,15 @@ class NewPaletteForm extends Component {
                 ({ name }) => name.toLowerCase() !== value.toLowerCase()
             )
         );
+
         ValidatorForm.addValidationRule("isColorUnique", value =>
             this.state.colors.every(({ color }) => color !== this.state.color)
         );
+        
+        ValidatorForm.addValidationRule("isPaletteFull", value =>
+            this.state.colors.length !== 20
+        );
+                
         ValidatorForm.addValidationRule("isPaletteNameUnique", value =>
             this.props.palette.every(({ paletteName }) => paletteName.toLowerCase() !== this.state.paletteName.toLowerCase())
         );
@@ -197,116 +233,31 @@ class NewPaletteForm extends Component {
 
         return (
             <div className={classes.root}>
-                <CssBaseline />
-                <AppBar
-                color="default"
-                position='fixed'
-                className={classNames(classes.appBar, {
-                    [classes.appBarShift]: open
-                })}
-                >
-                    <Toolbar disableGutters={!open}>
-                        <IconButton
-                        color='inherit'
-                        aria-label='Open drawer'
-                        onClick={this.handleDrawerOpen}
-                        className={classNames(classes.menuButton, open && classes.hide)}
-                        >
-                        <MenuIcon />
-                        </IconButton>
-                        <Typography variant='h6' color='inherit' noWrap>
-                            Persistent drawer
-                        </Typography>
-                        <ValidatorForm
-                            style={{ display: 'flex' }}
-                            onSubmit={this.savePalette}
-                            ref="form"
-                        >
-                            <TextValidator
-                                value={this.state.paletteName}
-                                style={{ margin: "0 15px 0 20px" }}
-                                placeholder="Palette Name"
-                                name="paletteName"
-                                validators={['required', 'isPaletteNameUnique']}
-                                errorMessages={[
-                                    'This field is required!',
-                                    'Palette name already exist!'
-                                ]}
-                                onChange={this.handleChange}
-                            />
-                            <Button
-                                variant="contained"
-                                color="secondary"
-                                type="submit"
-                            >
-                                SAVE PALETTE
-                            </Button>
-                        </ValidatorForm>
-                        
-                    </Toolbar>
-                </AppBar>
-                <Drawer
-                className={classes.drawer}
-                variant='persistent'
-                anchor='left'
-                open={open}
-                classes={{
-                    paper: classes.drawerPaper
-                }}
-                >
-                    <div className={classes.drawerHeader}>
-                        <IconButton onClick={this.handleDrawerClose}>
-                        <ChevronLeftIcon />
-                        </IconButton>
-                    </div>
-                    <Typography variant="h4">Create Your Palette</Typography>
-                    <Divider />
-                    <div>
-                        <Button
-                        variant="contained"
-                        color="secondary"
-                        onClick = {this.handleClearPalette}
-                        >
-                        Clear Palette
-                        </Button>
-                        <Button
-                        variant="contained"
-                        color="primary"
-                        onClick = {this.handleRandomColor}
-                        >
-                        Random Color
-                        </Button>
-                    </div>
-                    <ChromePicker
-                        color = {this.state.color}
-                        onChangeComplete={newColor => this.handleColorChange(newColor)}
-                    />
-                    <ValidatorForm
-                        onSubmit={this.handleAddColor}
-                        ref="form"
-                    >
-                        <TextValidator
-                            onChange={this.handleChange}
-                            name="colorName"
-                            value={this.state.colorName}
-                            validators={['required' , 'isColorNameUnique','isColorUnique']}
-                            errorMessages={[
-                            'This field is required!',
-                            'Color name must be unique!',
-                            'Color already used!'
-                            ]}
-                        />
-                        <br/>
-                        <Button
-                        type="submit"
-                        variant="contained"
-                        color="primary"
-                        style={{ background: this.state.color }}
-                        >
-                        Add Color
-                        </Button>
-                    </ValidatorForm>
-                </Drawer>
+                
+                <NewPaletteFormNav
+                    open={this.state.open}
+                    classes={classes}
+                    handleDrawerOpen={this.handleDrawerOpen}
+                    savePalette={this.savePalette}
+                    paletteName={this.state.paletteName}
+                    handleChange = {this.handleChange}
+                />
+
+                <NewPaletteFormSlideBar
+                    classes={classes} 
+                    open={this.state.open}
+                    handleDrawerClose={this.handleDrawerClose}
+                    handleClearPalette={this.handleClearPalette}
+                    handleRandomColor={this.handleRandomColor}
+                    color={this.state.color}
+                    handleColorChange={this.handleColorChange}
+                    handleAddColor={this.handleAddColor}
+                    handleChange={this.handleChange}
+                    colorName={this.state.colorName}
+                    handleChange={this.handleChange}
+                    noOfColors={this.state.colors.length}
+                />
+
                 <main
                 className={classNames(classes.content, {
                     [classes.contentShift]: open
@@ -317,6 +268,7 @@ class NewPaletteForm extends Component {
                         <NewPaletteColorList
                             colors={this.state.colors}
                             deleteColor={this.deleteColor}
+                            distance={1}
                             axis='xy'
                             onSortEnd={this.onSortEnd}
                         />
