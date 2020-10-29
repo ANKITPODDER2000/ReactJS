@@ -1,4 +1,5 @@
-export default{
+import Res from "./Const";
+export default {
     footer: {
         position: "relative",
         height: "4vh",
@@ -9,5 +10,16 @@ export default{
     },
     ele: {
         marginRight: "10px",
+    },
+    goBackHome: {
+        fontSize: '16px',
+        position: 'absolute',
+        left: '10px',
+        display: 'none',
+        lineHeight: '4vh',
+        cursor: 'pointer',
+        [Res.media('640')]: {
+            display : 'inline-block'
+        }
     }
 }

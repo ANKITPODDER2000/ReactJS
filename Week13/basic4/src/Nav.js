@@ -62,9 +62,9 @@ class Nav extends Component {
                     :null
                 }
                 <Select className={classes.select} value={this.state.format} onChange={this.handleFormat_}>
-                    <MenuItem value="hex">HEX - #ffffff</MenuItem>
-                    <MenuItem value="rgb">rgb - rgb(255 , 255 , 255)</MenuItem>
-                    <MenuItem value="rgba">rgba - rgba(255 , 255 , 255 ,1)</MenuItem>
+                    <MenuItem value="hex">HEX</MenuItem>
+                    <MenuItem value="rgb">RGB</MenuItem>
+                    <MenuItem value="rgba">RGBA</MenuItem>
                 </Select>
                 <Snackbar
                     anchorOrigin={{vertical:"bottom" , horizontal:"left"}}

@@ -1,3 +1,4 @@
+import Res from "./Const";
 export default {
     nav : {
         position: 'relative',
@@ -14,6 +15,9 @@ export default {
             justifyXontent: 'center',
             background: '#eceff1',
             marginRight: '15px',
+            [Res.media('640')]: {
+                display : props => props.sizeBig ? null : 'none',
+            },
             "& a": {
                 textDecoration: 'none',
                 color: '#000',
@@ -30,6 +34,13 @@ export default {
         display: 'inline-block',
         width: '340px',
         margin: '0 10px',
+        [Res.media('790')]: {
+            width : '250px'
+        },
+        [Res.media('450')]: {
+            width: '120px',
+            marginLeft : '0'
+        },
         "& .rc-slider-track": {
             backgroundColor: 'transparent',
         },
@@ -49,6 +60,9 @@ export default {
     select: {
         position: 'absolute',
         right: '50px',
+        [Res.media('710')]: {
+            right : '10px'
+        }
     }
 
 }
