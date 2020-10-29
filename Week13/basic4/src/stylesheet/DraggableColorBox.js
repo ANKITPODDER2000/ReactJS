@@ -6,7 +6,7 @@ export default{
         height: '25%',
         display: 'inline-block',
         margin: '0 auto',
-        marginBottom: '-5.05px',
+        marginBottom: '-5.3px',
         "&:hover svg": {
             color: props => chroma(props.color).luminance() <= 0.13 ? "#fff" : "#000",
             transform : 'scale(1.4)'

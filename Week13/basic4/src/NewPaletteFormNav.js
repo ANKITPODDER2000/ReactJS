@@ -9,6 +9,7 @@ import MenuIcon from "@material-ui/icons/Menu";
 import Button from "@material-ui/core/Button";
 import { withRouter } from "react-router-dom";
 import PaletteNameForm from "./PaletteNameForm";
+import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 
 class NewPaletteFormNav extends Component {
     render() {
@@ -30,7 +31,7 @@ class NewPaletteFormNav extends Component {
                         onClick={handleDrawerOpen}
                         className={classNames(classes.menuButton, open && classes.hide)}
                         >
-                        <MenuIcon />
+                        <ChevronRightIcon />
                         </IconButton>
                         <Typography variant='h6' color='inherit' noWrap>
                             Create Your Palette

@@ -71,6 +71,7 @@ class NewPaletteFormSlideBar extends Component {
                             name="colorName"
                             variant="filled"
                             value={colorName}
+                            label="Color Name"
                             validators={['required' , 'isColorNameUnique','isColorUnique','isPaletteFull']}
                             errorMessages={[
                                 'This field is required!',
