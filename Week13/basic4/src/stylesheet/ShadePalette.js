@@ -18,7 +18,7 @@ export default {
         display: 'inline-block',
         marginBottom: '-4px',
         cursor: 'pointer',
-        '& a': {
+        '& p': {
             position: 'absolute',
             top: "50%",
             left: "50%",

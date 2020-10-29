@@ -21,7 +21,7 @@ class ShadePalette extends Component {
         })
     }
     render() {
-        let { colors, paletteId ,classes} = this.props;
+        let { colors, paletteId ,classes , paletteName} = this.props;
         let colorbox = colors.map(color =>
             <ColorBox
                 key={uuid()}
@@ -44,15 +44,15 @@ class ShadePalette extends Component {
                 <div className={classes.colorId}>
                     {colorbox}
                     <div className={classes.goHome}>
-                        <a
+                        <p
                             onClick={() => this.props.history.goBack()}
-                        >GO BACK!</a>
+                        >GO BACK!</p>
                     </div>
                 </div>
                 
                 {/*FOOTER SECTION*/}
                 <Footer
-                    paletteName={paletteId}
+                    paletteName={paletteName}
                     emoji = {this.props.emoji}
                 />
             </div>

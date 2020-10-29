@@ -18,6 +18,7 @@ class PaletteList extends Component {
                     {this.props.color.map(color => 
                         <MiniPalette
                             key={uuid()}
+                            delelePalette = {this.props.delelePalette}
                             {...color}
                         />
                     )}

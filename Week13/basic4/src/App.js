@@ -16,10 +16,16 @@ class App extends Component{
         }
         this.savePalette = this.savePalette.bind(this);
         this.syncStorage = this.syncStorage.bind(this);
+        this.delelePalette = this.delelePalette.bind(this);
     }
     savePalette(newPalette) {
         this.setState({
             palette : [...this.state.palette , newPalette]
+        } , this.syncStorage)
+    }
+    delelePalette(paletteName) {
+        this.setState({
+            palette : this.state.palette.filter(color => color.paletteName !== paletteName)
         } , this.syncStorage)
     }
     syncStorage() {
@@ -64,7 +70,8 @@ class App extends Component{
         let arr = {
             colors: colorArr,
             paletteId: paletteId,
-            emoji : this.state.palette[flag].emoji
+            emoji: this.state.palette[flag].emoji,
+            paletteName : this.state.palette[flag].paletteName,
         }
         return <ShadePalette {...arr}/>
     }
@@ -76,6 +83,7 @@ class App extends Component{
                     render={() =>
                         <PaletteList
                             color={this.state.palette}
+                            delelePalette = {this.delelePalette}
                         />}
                 />
                 <Route

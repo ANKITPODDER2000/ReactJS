@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import classNames from "classnames";
 import { withStyles } from "@material-ui/core/styles";
-import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
+import { ValidatorForm } from 'react-material-ui-form-validator';
 import { withRouter } from "react-router-dom";
 import NewPaletteColorList from "./NewPaletteColorList";
 import  arrayMove from "array-move";
@@ -161,7 +161,6 @@ class NewPaletteForm extends Component {
                     handleAddColor={this.handleAddColor}
                     handleChange={this.handleChange}
                     colorName={this.state.colorName}
-                    handleChange={this.handleChange}
                     noOfColors={this.state.colors.length}
                 />
 
