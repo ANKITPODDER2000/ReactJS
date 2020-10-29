@@ -10,16 +10,22 @@ import NewPaletteForm from "./NewPaletteForm";
 class App extends Component{
     constructor(props) {
         super(props);
-        const savePalette = window.localStorage.getItem('palette');
+        const savePalette = JSON.parse(window.localStorage.getItem('palette'));
         this.state = {
-            palette : savePalette || seedColor,
+            palette :  savePalette || seedColor,
         }
         this.savePalette = this.savePalette.bind(this);
+        this.syncStorage = this.syncStorage.bind(this);
     }
     savePalette(newPalette) {
         this.setState({
             palette : [...this.state.palette , newPalette]
-        } , ()=>window.localStorage.setItem('palette',this.state.palette))
+        } , this.syncStorage)
+    }
+    syncStorage() {
+        window.localStorage.setItem(
+            'palette', JSON.stringify(this.state.palette)
+        )
     }
     getColor(id) {
         let flag = -1;
