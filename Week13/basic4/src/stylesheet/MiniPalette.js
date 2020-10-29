@@ -11,6 +11,9 @@ export default {
         transition : "0.5s",
         "&:hover": {
             boxShadow: "5px 5px 10px #000"
+        },
+        "&:hover div:nth-child(2)": {
+            opacity : 1
         }
     },
     colorContainer : {
@@ -23,6 +26,9 @@ export default {
         boxShadow: "2px 2px 6px #0007",
         transition : "0.5s",
         "&:hover": {
+            boxShadow : "2px 2px 6px #000"
+        },
+        "&:hover ~ div:nth-child(2)": {
             boxShadow : "2px 2px 6px #000"
         }
     },
@@ -41,6 +47,24 @@ export default {
         alignItems: "center",
         height: "70px",
         padding : "0 10px"
+    },
+    deleteContainer: {
+        position: 'absolute',
+        right: '0',
+        top: '0',
+        background: 'red',
+        width: '32px',
+        height: '32px',
+        zIndex: '10',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        color: '#fff',
+        boxShadow: "2px 2px 6px #0007",
+        opacity: '0',
+        transition : '0.4s ease-in',
+        "& svg" : {
+            fontSize : '18px'
+        }
     }
-
 }
