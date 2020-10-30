@@ -1,10 +1,11 @@
+import Res from "./Const";
 export default {
     container: {
         position : "relative",
         width : "200px",
         height : "220px",
         background: "#fff",
-        margin: "20px calc(calc(100% - 800px) / 8)",
+        margin: "20px 30px",
         paddingTop: "10px",
         cursor: 'pointer',
         boxShadow: "5px 5px 10px #0006",
@@ -62,6 +63,9 @@ export default {
         color: '#fff',
         boxShadow: "2px 2px 6px #0007",
         opacity: '0',
+        [Res.media(460)]: {
+            opacity : 1
+        },
         transition : '0.4s ease-in',
         "& svg" : {
             fontSize : '18px'
