@@ -9,7 +9,6 @@ import NewPaletteFormNav from "./NewPaletteFormNav";
 import NewPaletteFormSlideBar from "./NewPaletteFormSlideBar";
 import styles from "./stylesheet/NewPaletteForm";
 import ntc from "./ntc";
-import { FormatListNumbered } from "@material-ui/icons";
 
 function RGBAToHexA(r,g,b,a) {
     r = r.toString(16);

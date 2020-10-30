@@ -15,7 +15,6 @@ export default {
         position: 'absolute',
         width: '20%',
         height:' 50%',
-        background: '#000',
         display: 'inline-block',
         marginBottom: '-4px',
         cursor: 'pointer',
