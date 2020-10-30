@@ -1,29 +1,53 @@
 import chroma from "chroma-js";
+import Res from "./Const";
 export default{
     root: {
         position: 'relative',
         width: '20%',
         height: '25%',
-        display: 'inline-block',
-        margin: '0 auto',
-        marginBottom: '-5.3px',
+        margin: '0',
         "&:hover svg": {
             color: props => chroma(props.color).luminance() <= 0.13 ? "#fff" : "#000",
             transform : 'scale(1.4)'
+        },
+        [Res.media('843')]: {
+            width: "25%",
+            height : '20%'
+        },
+        [Res.media('740')]: {
+            width: "50%",
+            height : '10%'
+        },
+        [Res.media('430')]: {
+            width: "100%",
+            height : '5%'
         }
     },
     textContainer: {
-        position : 'absolute',
+        position : 'relative',
         width: '100%',
-        height: '40px',
+        height: '100%',
         bottom: '0',
         display: 'flex',
         justifyContent: 'space-between',
-        alignItems : 'center',
-        padding: '0 15px',
+        alignItems:'flex-end',
+        padding: '10px',
+        [Res.media('430')]: {
+            padding: '0 10px',
+            alignItems:'center',
+        },
         "& p" : {
             fontSize: '16px',
             color: props => chroma(props.color).luminance() <= 0.13 ? "#fff" : "#000",
+            position: 'relative',
+            width: '80%',
+            height: '100%',
+            display: 'flex',
+            alignItems: 'flex-end',
+            wordBreak: 'break-all',
+            [Res.media('430')]: {
+                alignItems:'center',
+            }
         },
     },
     icon: {

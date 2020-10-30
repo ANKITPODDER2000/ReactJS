@@ -41,10 +41,15 @@ class PaletteNameForm extends Component {
 	}
 	render() {
 		const { stage } = this.state;
-		const { paletteName,handleChange } = this.props;
+		const { paletteName,handleChange , classes } = this.props;
 		return (
 			<div>
-				<Button variant="contained" color="primary" onClick={this.handleClickOpen}>
+				<Button
+					variant="contained"
+					color="primary"
+					onClick={this.handleClickOpen}
+					className={classes.save}
+				>
 					SAVE
 				</Button>
 				<Dialog open={stage === 'emoji'}>

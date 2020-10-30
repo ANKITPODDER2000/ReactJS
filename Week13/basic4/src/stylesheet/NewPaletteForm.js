@@ -1,7 +1,10 @@
-const drawerWidth = 340;
+import Res from "./Const";
+const drawerWidth = window.innerWidth <= 360 ? window.innerWidth : 340;
 const styles = theme => ({
     root: {
-    display: "flex"
+        display: "flex",
+        height: '100vh',
+        overflow : 'hidden'
     },
     appBar: {
     transition: theme.transitions.create(["margin", "width"], {
@@ -23,8 +26,11 @@ const styles = theme => ({
     })
     },
     menuButton: {
-    marginLeft: 12,
-    marginRight: 20
+        marginLeft: 12,
+        marginRight: 20,
+        [Res.media('510')]: {
+            margin : '0px',
+        }
     },
     hide: {
     display: "none"
@@ -65,7 +71,10 @@ const styles = theme => ({
         justifyContent: 'center',
         alignItems: 'center',
         marginRight: '50px',
-        height: '64px'
+        height: '64px',
+        [Res.media('470')]: {
+            marginRight : '10px'
+        }
     },
     form: {
         display: 'flex',
@@ -78,7 +87,16 @@ const styles = theme => ({
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        paddingTop: '30px'
+        paddingTop: '30px',
+        "& h4": {
+          marginBottom:'25px'  
+        },
+        [Res.media('400')]: {
+            paddingTop: 0,
+            "& h4": {
+            marginBottom:10  
+            },
+        }
     },
     SlideBtns: {
         position: 'relative',
@@ -87,10 +105,46 @@ const styles = theme => ({
         flexDirection: 'row',
         justifyContent: 'space-around',
         marginBottom: '30px',
+        [Res.media('400')]: {
+            marginBottom: 15,
+            "& .btn": {
+                fontSize:12
+            }
+        },
     },
     picker: {
         width: '250px !important',
-        marginBottom : '25px'
+        marginBottom: '25px',
+        [Res.media('360')]: {
+            width: '210px !important',
+        }
+    },
+    goBack: {
+        marginRight: "15px",
+        [Res.media('460')]: {
+            fontSize: 10,
+            marginRight:8
+        },
+        [Res.media('340')]: {
+            fontSize: 8,
+            marginRight:4
+        }
+    },
+    save: {
+        [Res.media('460')]: {
+            fontSize: 10,
+        },
+        [Res.media('340')]: {
+            fontSize : 8
+        }
+    },
+    heading: {
+        [Res.media('460')]: {
+            fontSize : '14px'
+        },
+        [Res.media('351')]: {
+            fontSize:13
+        }
     }
 });
 

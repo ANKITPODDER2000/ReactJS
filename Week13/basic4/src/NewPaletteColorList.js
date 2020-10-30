@@ -6,7 +6,14 @@ import { SortableContainer } from "react-sortable-hoc"
 class NewPaletteColorList extends Component {
     render() {
         return (
-            <div style={{height:'100%'}}>
+            <div style={{
+                height: '100%',
+                width: '100%',
+                display: 'flex',
+                flexWrap: 'wrap',
+                flexDirection: 'row',
+                alignContent: 'flex-start',
+            }}>
                 {this.props.colors.map((color , index) =>
                     <DraggableColorBox
                         key={uuid()}

@@ -40,19 +40,21 @@ class NewPaletteFormSlideBar extends Component {
             </div>
                 <div className={classes.navContainer}>
                     
-                    <Typography variant="h4" style={{marginBottom:'25px'}}>Create Your Palette</Typography>
+                    <Typography variant="h4" >Create Your Palette</Typography>
                     <div className={classes.SlideBtns}>
                         <Button
                         variant="contained"
                         color="secondary"
                         onClick = {handleClearPalette}
+                            className="btn"
                         >
                         Clear Palette
                         </Button>
                         <Button
-                        variant="contained"
-                        color="primary"
-                        onClick = {handleRandomColor}
+                            className="btn"
+                            variant="contained"
+                            color="primary"
+                            onClick = {handleRandomColor}
                         >
                         Random Color
                         </Button>
@@ -80,8 +82,7 @@ class NewPaletteFormSlideBar extends Component {
                                 'Palette is full!',
                             ]}
                             style={{
-                                width: '250px',
-                                height:'70px'
+                                width: '250px'
                             }}
                         />
                         <br/>

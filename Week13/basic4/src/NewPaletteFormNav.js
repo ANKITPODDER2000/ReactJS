@@ -30,43 +30,22 @@ class NewPaletteFormNav extends Component {
                         onClick={handleDrawerOpen}
                         className={classNames(classes.menuButton, open && classes.hide)}
                         >
-                        <ChevronRightIcon />
+                        <ChevronRightIcon/>
                         </IconButton>
-                        <Typography variant='h6' color='inherit' noWrap>
+                        <Typography
+                            className={classes.heading}
+                            variant='h6'
+                            color='inherit'
+                            noWrap
+                        >
                             Create Your Palette
                         </Typography>
                     </Toolbar>
                     <div className={classes.formContainer}>
-                        {/*<ValidatorForm
-                            className={classes.form}
-                            onSubmit={savePalette}
-                            ref="form"
-                        >
-                            <TextValidator
-                                value={paletteName}
-                                style={{ margin: "0 15px 0 20px" }}
-                                placeholder="Palette Name"
-                                name="paletteName"
-                                validators={['required', 'isPaletteNameUnique']}
-                                errorMessages={[
-                                    'This field is required!',
-                                    'Palette name already exist!'
-                                ]}
-                                onChange={handleChange}
-                            />
-                            <Button
-                                variant="contained"
-                                color="primary"
-                                type="submit"
-                                style={{maxHeight:'36px'}}
-                            >
-                                SAVE PALETTE
-                            </Button>
-                        </ValidatorForm>*/}
                         <Button
                             variant="contained"
                             color="secondary"
-                            style={{ marginRight: "15px" }}
+                            className={classes.goBack}
                             onClick={() => this.props.history.goBack()}
                         >Go Back</Button>
                         <PaletteNameForm

@@ -9,6 +9,7 @@ import NewPaletteFormNav from "./NewPaletteFormNav";
 import NewPaletteFormSlideBar from "./NewPaletteFormSlideBar";
 import styles from "./stylesheet/NewPaletteForm";
 import ntc from "./ntc";
+import { FormatListNumbered } from "@material-ui/icons";
 
 function RGBAToHexA(r,g,b,a) {
     r = r.toString(16);
@@ -33,15 +34,12 @@ class NewPaletteForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            open: true,
+            open: false,
             color: "#008080",
             colors: [ 
                 { name: 'Red', color: "#f00" },
                 { name : "Green" , color : "#0f0"},
                 { name : "Blue", color: "#00f" },
-                { name: "Black", color: "#000" },
-                { name: 'Yellow', color: '#FEFE00' },
-                {name : 'Light Blue' , color : '#12D0F0'}
             ],
             colorName: '',
             paletteName : ''
@@ -169,8 +167,17 @@ class NewPaletteForm extends Component {
                     [classes.contentShift]: open
                 })}
                 >
-                    <div className={classes.drawerHeader} />
-                    <div style={{position:"relative" , width:"100%" , height:"100%"}}>
+                    <div
+                        className={classes.drawerHeader}
+                        style={{
+                            minHeight:'64px'
+                        }}
+                    />
+                    <div style={{
+                            position: "relative",
+                            width: "100%",
+                            height: "100%",
+                        }}>
                         <NewPaletteColorList
                             colors={this.state.colors}
                             deleteColor={this.deleteColor}
