@@ -5,7 +5,20 @@ import PaletteList from "./PaletteList";
 import ShadePalette from "./ShadePalette";
 import seedColor from "./seedColor";
 import { generatePalette } from "./ColorHelpers";
+import {withStyles} from "@material-ui/styles";
 import NewPaletteForm from "./NewPaletteForm";
+import { CSSTransition , TransitionGroup} from 'react-transition-group';
+
+import { v4 as uuid } from "uuid";
+
+const style = {
+    "@global" : {
+        ".page" : {
+            width  : '100%',
+            minHeight : '100vh'
+        }
+    }
+}
 
 class App extends Component{
     constructor(props) {
@@ -42,7 +55,7 @@ class App extends Component{
             }
         }
         if (flag === -1) return <h1>COLOR PALETTE NOT FOUND!</h1>
-        return <Palette {...generatePalette(this.state.palette[flag])}/>
+        return <div className="page"><Palette {...generatePalette(this.state.palette[flag])}/></div>
     }
     getShades(paletteId, colorId) {
         let flag = -1;
@@ -73,43 +86,55 @@ class App extends Component{
             emoji: this.state.palette[flag].emoji,
             paletteName : this.state.palette[flag].paletteName,
         }
-        return <ShadePalette {...arr}/>
+        return <div className="page"><ShadePalette {...arr}/></div>
     }
     render() {
         return (
-            <Switch>
-                <Route
-                    exact path="/"
-                    render={() =>
-                        <PaletteList
-                            color={this.state.palette}
-                            delelePalette = {this.delelePalette}
-                        />}
-                />
-                <Route
-                    exact path="/palette/new"
-                    render={() =>
-                        <NewPaletteForm
-                            savePalette={this.savePalette}
-                            palette = {this.state.palette}
-                        />
-                    }
-                />
-                <Route
-                    exact path="/palette/:id"
-                    render={(details) =>
-                        this.getColor(details.match.params.id)
-                    }
-                />
-                <Route
-                    exact path="/palette/:paletteId/:colorId"
-                    render={(details) =>
-                        this.getShades(details.match.params.paletteId , details.match.params.colorId)
-                    }
-                />
-            </Switch>
+            <Route render = { (loaction) => 
+                    <TransitionGroup>
+                        <CSSTransition key={uuid()} classNames="fade" timeout={500}>
+                            <Switch loaction={loaction}>
+                                <Route
+                                    exact path="/"
+                                    render={() =>
+                                        <div className="page">
+                                            <PaletteList
+                                                color={this.state.palette}
+                                                delelePalette = {this.delelePalette}
+                                            />
+                                        </div>
+                                    }
+                                />
+                                <Route
+                                    exact path="/palette/new"
+                                    render={() =>
+                                        <div className="page">
+                                            <NewPaletteForm
+                                                savePalette={this.savePalette}
+                                                palette = {this.state.palette}
+                                            />
+                                        </div>
+                                    }
+                                />
+                                <Route
+                                    exact path="/palette/:id"
+                                    render={(details) =>
+                                        this.getColor(details.match.params.id)
+                                    }
+                                />
+                                <Route
+                                    exact path="/palette/:paletteId/:colorId"
+                                    render={(details) =>
+                                        this.getShades(details.match.params.paletteId , details.match.params.colorId)
+                                    }
+                                />
+                            </Switch>
+                        </CSSTransition>
+                    </TransitionGroup>
+                }
+            />
         )
     }
 }
 
-export default App;
+export default withStyles(style)(App);
