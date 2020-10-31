@@ -4,6 +4,7 @@ import { withRouter , Link } from "react-router-dom";
 import { withStyles } from "@material-ui/styles";
 import style from "./stylesheet/PaletteList";
 import { v4 as uuid } from "uuid";
+import { CSSTransition , TransitionGroup} from 'react-transition-group';
 
 class PaletteList extends Component {
     render() {
@@ -14,15 +15,17 @@ class PaletteList extends Component {
                     <h1>ReactColors</h1>
                     <Link to="/palette/new">Create New Palette</Link>
                 </nav>
-                <div className={classes.container}>
+                <TransitionGroup className={classes.container}>
                     {this.props.color.map(color => 
+                        <CSSTransition key={color.id} classNames="fade" timeout={500}>
                         <MiniPalette
                             key={uuid()}
                             delelePalette = {this.props.delelePalette}
                             {...color}
                         />
+                        </CSSTransition>
                     )}
-                </div>
+                </TransitionGroup>
             </div>
         );
     }

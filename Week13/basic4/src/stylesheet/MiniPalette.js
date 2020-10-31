@@ -5,7 +5,7 @@ export default {
         width : "200px",
         height : "220px",
         background: "#fff",
-        margin: "20px 30px",
+        margin: "20px calc( calc(100% - 800px) / 8)",
         paddingTop: "10px",
         cursor: 'pointer',
         boxShadow: "5px 5px 10px #0006",
@@ -15,7 +15,16 @@ export default {
         },
         "&:hover div:nth-child(2)": {
             opacity : 1
-        }
+        },
+        [Res.media('895')] : {
+            margin: "20px calc( calc(100% - 600px) / 6)",
+        },
+        [Res.media('717')] : {
+            margin: "20px calc( calc(100% - 400px) / 4)",
+        },
+        [Res.media('501')] : {
+            margin: "20px calc( calc(100% - 200px) / 2)",
+        },
     },
     colorContainer : {
         position: 'relative',

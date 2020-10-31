@@ -1,6 +1,15 @@
 import Res from "./Const";
 import bg from "./bg.svg";
 export default {
+    "@global":{
+        ".fade-exit":{
+            opacity : 1
+        },
+        ".fade-exit-active":{
+            opacity : 0,
+            transition : 'opacity 500ms ease-out'
+        }
+    },
     root: {
         position: 'relative',
         width: "100%",
@@ -49,7 +58,13 @@ export default {
         width: "80%",
         margin: "30px auto 0",
         display: "flex",
-        justifyContent: "center",
-        flexWrap : "wrap"
+        justifyContent: "flex-start",
+        flexWrap : "wrap",
+        [Res.media('1085')] : {
+            width : '90%'
+        },
+        [Res.media('963')] : {
+            width : '95%'
+        },
     }
 }
