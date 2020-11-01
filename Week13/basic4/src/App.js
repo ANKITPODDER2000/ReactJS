@@ -5,20 +5,11 @@ import PaletteList from "./PaletteList";
 import ShadePalette from "./ShadePalette";
 import seedColor from "./seedColor";
 import { generatePalette } from "./ColorHelpers";
-import {withStyles} from "@material-ui/styles";
+
+import Page from "./Page";
 import NewPaletteForm from "./NewPaletteForm";
-import { CSSTransition , TransitionGroup} from 'react-transition-group';
+import { TransitionGroup, CSSTransition } from "react-transition-group";
 
-import { v4 as uuid } from "uuid";
-
-const style = {
-    "@global" : {
-        ".page" : {
-            width  : '100%',
-            minHeight : '100vh'
-        }
-    }
-}
 
 class App extends Component{
     constructor(props) {
@@ -55,7 +46,7 @@ class App extends Component{
             }
         }
         if (flag === -1) return <h1>COLOR PALETTE NOT FOUND!</h1>
-        return <div className="page"><Palette {...generatePalette(this.state.palette[flag])}/></div>
+        return <Page><Palette {...generatePalette(this.state.palette[flag])}/></Page>
     }
     getShades(paletteId, colorId) {
         let flag = -1;
@@ -86,34 +77,34 @@ class App extends Component{
             emoji: this.state.palette[flag].emoji,
             paletteName : this.state.palette[flag].paletteName,
         }
-        return <div className="page"><ShadePalette {...arr}/></div>
+        return <Page><ShadePalette {...arr}/></Page>
     }
     render() {
         return (
-            <Route render = { (loaction) => 
+            <Route render = { ({location}) => (
                     <TransitionGroup>
-                        <CSSTransition key={uuid()} classNames="fade" timeout={500}>
-                            <Switch loaction={loaction}>
+                        <CSSTransition key={location.key} className='page' timeout={5000}>
+                            <Switch location={location}>
                                 <Route
                                     exact path="/"
                                     render={() =>
-                                        <div className="page">
+                                        <Page>
                                             <PaletteList
                                                 color={this.state.palette}
                                                 delelePalette = {this.delelePalette}
                                             />
-                                        </div>
+                                        </Page>
                                     }
                                 />
                                 <Route
                                     exact path="/palette/new"
                                     render={() =>
-                                        <div className="page">
+                                        <Page>
                                             <NewPaletteForm
                                                 savePalette={this.savePalette}
                                                 palette = {this.state.palette}
                                             />
-                                        </div>
+                                        </Page>
                                     }
                                 />
                                 <Route
@@ -131,10 +122,10 @@ class App extends Component{
                             </Switch>
                         </CSSTransition>
                     </TransitionGroup>
-                }
+                )}
             />
         )
     }
 }
 
-export default withStyles(style)(App);
+export default App;
