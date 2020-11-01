@@ -81,49 +81,50 @@ class App extends Component{
     }
     render() {
         return (
-            <Route render = { ({location}) => (
-                    <TransitionGroup>
-                        <CSSTransition key={location.key} className='page' timeout={5000}>
-                            <Switch location={location}>
-                                <Route
-                                    exact path="/"
-                                    render={() =>
-                                        <Page>
-                                            <PaletteList
-                                                color={this.state.palette}
-                                                delelePalette = {this.delelePalette}
-                                            />
-                                        </Page>
-                                    }
-                                />
-                                <Route
-                                    exact path="/palette/new"
-                                    render={() =>
-                                        <Page>
-                                            <NewPaletteForm
-                                                savePalette={this.savePalette}
-                                                palette = {this.state.palette}
-                                            />
-                                        </Page>
-                                    }
-                                />
-                                <Route
-                                    exact path="/palette/:id"
-                                    render={(details) =>
-                                        this.getColor(details.match.params.id)
-                                    }
-                                />
-                                <Route
-                                    exact path="/palette/:paletteId/:colorId"
-                                    render={(details) =>
-                                        this.getShades(details.match.params.paletteId , details.match.params.colorId)
-                                    }
-                                />
-                            </Switch>
-                        </CSSTransition>
-                    </TransitionGroup>
-                )}
-            />
+            <Route render={({location}) => (
+                <TransitionGroup>
+                    <CSSTransition key={location.pathname} classNames="page" timeout={500}>
+                        <Switch location={location}>
+                            {console.log(location)}
+                            <Route
+                                exact path="/"
+                                render={() =>
+                                    <Page>
+                                        <PaletteList
+                                            color={this.state.palette}
+                                            delelePalette = {this.delelePalette}
+                                        />
+                                    </Page>
+                                }
+                            />
+                            <Route
+                                exact path="/palette/new"
+                                render={() =>
+                                    <Page>
+                                        <NewPaletteForm
+                                            savePalette={this.savePalette}
+                                            palette = {this.state.palette}
+                                        />
+                                    </Page>
+                                }
+                            />
+                            <Route
+                                exact path="/palette/:id"
+                                render={(details) =>
+                                    this.getColor(details.match.params.id)
+                                }
+                            />
+                            <Route
+                                exact path="/palette/:paletteId/:colorId"
+                                render={(details) =>
+                                    this.getShades(details.match.params.paletteId , details.match.params.colorId)
+                                }
+                            />
+                        </Switch>
+                    </CSSTransition>
+                </TransitionGroup>
+            )}/>
+                
         )
     }
 }

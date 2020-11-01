@@ -37,7 +37,9 @@ class PaletteNameForm extends Component {
 		})
 	}
 	savePalette(emoji) {
-		this.props.savePalette(emoji.native);
+		this.setState({
+			stage : ''
+		},() => this.props.savePalette(emoji.native))
 	}
 	render() {
 		const { stage } = this.state;
