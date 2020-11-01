@@ -7,6 +7,7 @@ export default {
         display: "flex",
         padding: "0 5%",
         justifyContent: "flex-end",
+        background : '#fff',
     },
     ele: {
         marginRight: "10px",

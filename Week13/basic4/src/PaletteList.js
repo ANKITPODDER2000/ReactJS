@@ -50,7 +50,9 @@ class PaletteList extends Component {
         const { classes } = this.props;
         return (
             <div className={classes.root}>
-                <nav className={classes.nav}>
+                <nav
+                    className={classes.nav}
+                >
                     <h1>ReactColors</h1>
                     <Link to="/palette/new">Create New Palette</Link>
                 </nav>

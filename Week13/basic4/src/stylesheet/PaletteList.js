@@ -21,7 +21,10 @@ export default {
     },
     nav: {
         position: 'relative',
-        width: "100 %",
+        top: 0,
+        left: 0,
+        zIndex:100,
+        width: "100%",
         height : "60px",
         background: "#fff3",
         padding: "0 10%",
@@ -56,7 +59,8 @@ export default {
     container: {
         position: 'relative',
         width: "80%",
-        margin: "30px auto 0",
+        paddingTop : 30,
+        margin: "0 auto 0",
         display: "flex",
         justifyContent: "flex-start",
         flexWrap : "wrap",

@@ -7,6 +7,7 @@ export default {
         display: 'flex',
         justifyContent: 'flex-start',
         alignItems: 'center',
+        background : '#fff',
         "& .logo": {
             padding: '0 13px',
             height: '100%',
