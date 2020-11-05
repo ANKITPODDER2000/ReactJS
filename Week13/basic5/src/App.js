@@ -1,12 +1,14 @@
-import React , {Component} from 'react';
+import React, { Component } from 'react';
+import Sidebar from "./Sidebar";
 import './App.css';
 
 class App extends Component{
     render() {
         return (
             <div className="app">
-                <h1>Lets create a whatsapp clone</h1>
-                <div className="app_body"></div>
+                <div className="app_body">
+                    <Sidebar />
+                </div>
             </div>
         )
     }
