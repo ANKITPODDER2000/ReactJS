@@ -16,6 +16,7 @@ class Chat extends Component {
         return (
             <div className={classes.chat}>
                 {/*Chat Header*/}
+                <ChatHeader />
             </div>
         );
     }
