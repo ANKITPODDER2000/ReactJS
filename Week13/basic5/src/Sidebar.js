@@ -1,18 +1,49 @@
 import React, { Component } from 'react';
-import "./Sidebar.css";
+import SidebarHeader from "./SidebarHeader";
+import SidebarSearch from "./SidebarSearch";
+import ChatList from "./ChatList";
+import { withStyles } from "@material-ui/styles";
+
+const style = {
+    sidebar : {
+        position: 'relative',
+        width: '350px',
+        height: '100%',
+        background: 'rgb(235, 231, 231)' //#3F4448
+    }
+}
 
 class Sidebar extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            value : ""
+        }
+        this.handleChange = this.handleChange.bind(this);
+    }
+    handleChange(e) {
+        this.setState({
+            value : e.target.value
+        })
+    }
     render() {
+        const { classes } = this.props;
         return (
-            <div className="sidebar">
-                <div className="sidebar_header">
-                    <div className="sidebar_header_right"></div>
-                </div>
-                <div className="sidebar_search"></div>
-                <div className="sidebar_chat"></div>
+            <div className={classes.sidebar}>
+                {/*This component is used to show the header of the sidebar*/}
+                <SidebarHeader />
+                {/*This component is used to show the sidebarsearch of the sidebar*/}
+                <SidebarSearch
+                    value={this.state.value}
+                    handleChange={this.handleChange}
+                />
+                {/*All about chat list*/}
+                <ChatList
+                    chats = {this.props.chats}
+                />
             </div>
         );
     }
 }
 
-export default Sidebar;
+export default withStyles(style)(Sidebar);
