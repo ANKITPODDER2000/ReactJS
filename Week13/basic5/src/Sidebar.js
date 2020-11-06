@@ -9,7 +9,7 @@ const style = {
         position: 'relative',
         width: '350px',
         height: '100%',
-        background: 'rgb(235, 231, 231)' //#3F4448
+        background: '#3F4448', //#3F4448
     }
 }
 

@@ -38,7 +38,7 @@ const style = {
             fontSize : 12
         },
         "& p.notSeen": {
-            color : '#02ff0c'
+            color : '#00AF9C'
         }
     },
     textContainer: {
@@ -49,7 +49,7 @@ const style = {
         fontSize: 12,
         display: 'flex',
         "& p.notSeen": {
-            color : '#02ff0c'
+            color : '#00AF9C'
         }
     },
     lastBound: {

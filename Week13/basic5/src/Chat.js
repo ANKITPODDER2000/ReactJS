@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ChatHeader from "./ChatHeader";
+import ChatBox from "./ChatBox";
 import { withStyles } from "@material-ui/styles";
 
 const Style = {
@@ -17,6 +18,7 @@ class Chat extends Component {
             <div className={classes.chat}>
                 {/*Chat Header*/}
                 <ChatHeader />
+                <ChatBox />
             </div>
         );
     }
