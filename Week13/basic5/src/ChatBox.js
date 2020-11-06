@@ -31,7 +31,6 @@ const style = {
         padding: '7px 14px',
         width: 'fit-content',
         background : '#fff',
-        marginBottom: 10,
         display: 'flex',
         flexDirection: 'row',
         maxWidth: '80%',

@@ -28,7 +28,6 @@ const style = {
         position: 'relative',
         width: '100%',
         padding: '0 20px 0 10px',
-        justifyContent: 'space-between',
         marginBottom: '5px',
         color: '#fff',
         display: 'flex',

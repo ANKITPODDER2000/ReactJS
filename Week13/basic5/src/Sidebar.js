@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import SidebarHeader from "./SidebarHeader";
 import SidebarSearch from "./SidebarSearch";
 import ChatList from "./ChatList";
+import db from "./firebase";
 import { withStyles } from "@material-ui/styles";
 
 const style = {
@@ -17,9 +18,15 @@ class Sidebar extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            value : ""
+            value : "" ,
+            chats : []
         }
         this.handleChange = this.handleChange.bind(this);
+    }
+    componentDidMount() {
+        db.collection('chats').onSnapshot(snapshot => (
+            this.setState({chats  : snapshot.docs.map(doc => ({id: doc.id,data : doc.data()}))})
+        ))
     }
     handleChange(e) {
         this.setState({
@@ -39,7 +46,7 @@ class Sidebar extends Component {
                 />
                 {/*All about chat list*/}
                 <ChatList
-                    chats = {this.props.chats}
+                    chats = {this.state.chats}
                 />
             </div>
         );
