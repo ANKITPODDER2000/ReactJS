@@ -3,14 +3,8 @@ import ChatHeader from "./ChatHeader";
 import ChatBox from "./ChatBox";
 import TypeMsg from "./TypeMsg";
 import { withStyles } from "@material-ui/styles";
+import Style from "./styles/Chat";
 
-const Style = {
-    chat: {
-        position: 'relative',
-        width: 'calc(100% - 350px)',
-        height : '100%',
-    }
-}
 
 class Chat extends Component {
     render() {

@@ -4,25 +4,7 @@ import ChatIcon from '@material-ui/icons/Chat';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import DonutLargeIcon from '@material-ui/icons/DonutLarge';
 import { withStyles } from "@material-ui/styles";
-
-const style = {
-    "@global": {
-        '.MuiButtonBase-root.MuiIconButton-root' : {
-            padding : '10px',
-            margin: '0 3px',
-        }
-    },
-    sidebar_header : {
-        position: 'relative',
-        width: '100%',
-        height: '70px',
-        padding: '0 10px',
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        background: '#2A2F32',
-    }
-}
+import style from "./styles/SidebarHeader";
 
 class SidebarHeader extends Component {
     render() {

@@ -4,15 +4,7 @@ import SidebarSearch from "./SidebarSearch";
 import ChatList from "./ChatList";
 import db from "./firebase";
 import { withStyles } from "@material-ui/styles";
-
-const style = {
-    sidebar : {
-        position: 'relative',
-        width: '350px',
-        height: '100%',
-        background: '#3F4448', //#3F4448
-    }
-}
+import style from "./styles/Sidebar";
 
 class Sidebar extends Component {
     constructor(props) {

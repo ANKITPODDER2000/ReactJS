@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Router , Route, Switch } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import Sidebar from "./Sidebar";
 import Chat from "./Chat";
 import './App.css';

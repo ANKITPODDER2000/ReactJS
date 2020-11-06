@@ -1,16 +1,7 @@
 import React, { Component } from 'react';
 import ChatOptions from "./ChatOptions";
 import { withStyles } from "@material-ui/styles";
-
-const style = {
-    sidebar_chat: {
-        position: "relative",
-        width: '100%',
-        height: 'calc(100% - 120px)',
-        background: '#2D3134',
-        borderTop : '1px solid #3F4448'
-    }
-}
+import style from "./styles/ChatList";
 
 class ChatList extends Component {
     render() {
