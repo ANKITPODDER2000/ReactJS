@@ -19,8 +19,9 @@ class ChatList extends Component {
             <div className={classes.sidebar_chat}>
                 {this.props.chats.map(chat =>
                     <ChatOptions
-                        key = {chat.id}
-                        chat = {chat.data}
+                        key={chat.id}
+                        chat={chat.data}
+                        id={ chat.id}
                     />
                 )}
             </div>

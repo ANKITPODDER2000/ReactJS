@@ -12,8 +12,8 @@
 	position: relative;
 	width: 90%;
 	height: 90%;
-	background-color: #ededed;
+	background-color: #696464;
 	display: flex;
-	justify-content: center;
+	justify-content: flex-start;
 	align-items: center;
 }

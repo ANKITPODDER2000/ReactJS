@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Router , Route, Switch } from "react-router-dom";
 import Sidebar from "./Sidebar";
 import Chat from "./Chat";
 import './App.css';
@@ -9,7 +10,12 @@ class App extends Component{
             <div className="app">
                 <div className="app_body">
                     <Sidebar/>
-                    <Chat />
+                    <Switch>
+                        <Route
+                            path="/chat/:userId"
+                            render={() => <Chat />}
+                        />
+                    </Switch>
                 </div>
             </div>
         )

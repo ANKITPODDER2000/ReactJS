@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Avatar } from '@material-ui/core';
 import DoneAllIcon from '@material-ui/icons/DoneAll';
 import { withStyles } from "@material-ui/styles";
+import { withRouter } from "react-router-dom";
 
 const style = {
     chat_options: {
@@ -63,10 +64,17 @@ const style = {
 }
 
 class ChatOptions extends Component {
+    constructor(props) {
+        super(props);
+        this.handleClick = this.handleClick.bind(this);
+    }
+    handleClick() {
+        this.props.history.push(`/chat/${this.props.id}`);
+    }
     render() {
         const { classes } = this.props;
         return (
-            <div className={classes.chat_options}>
+            <div className={classes.chat_options} onClick={ this.handleClick }>
                 <Avatar
                     src={this.props.chat.img}
                     className={classes.img_container}
@@ -98,4 +106,4 @@ class ChatOptions extends Component {
     }
 }
 
-export default withStyles(style)(ChatOptions);
+export default withStyles(style)(withRouter(ChatOptions));
