@@ -10,19 +10,44 @@ import './App.css';
 class App extends Component{
     static contextType = UserContext;
     render() {
-        const { userLogin } = this.context;
+        const { userLogin , id } = this.context;
         return (
             <Switch>
-                {/*This route for the home page!*/}
+                {/* 
+                    This route for the home page /
+                    this page will redirect to url/userId
+                */}
                 <Route 
                     exact 
                     path="/" 
-                    render={() => 
-                        !userLogin 
-                            ? 
-                                <Redirect to="/login" /> 
-                            : 
-                                <AppBody><Sidebar/></AppBody>
+                    render={() =>
+                        !userLogin
+                            ?
+                            <Redirect to="/login" />
+                            :
+                            <Redirect to={ `/${id}` } />
+                    }
+                />
+                {/*This route for the Login page!*/}
+                <Route 
+                    exact 
+                    path="/login" 
+                    render={ () => <Login /> }
+                />
+                {/*
+                    This Route for url/userId
+                */}
+                <Route
+                    exact
+                    path="/:userId"
+                    render={() =>
+                        !userLogin
+                            ?
+                                <Redirect to="/login" />
+                            :
+                            <AppBody>
+                                <Sidebar />
+                            </AppBody>
                     }
                 />
                 {/*This route for the chat page!*/}
@@ -38,12 +63,6 @@ class App extends Component{
                                     <Chat />
                                 </AppBody>
                     }
-                />
-                {/*This route for the Login page!*/}
-                <Route 
-                    exact 
-                    path="/login" 
-                    render={ () => <Login /> }
                 />
             </Switch>
         )
