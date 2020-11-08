@@ -12,8 +12,13 @@ class ChatBox extends Component {
         this.findChats = this.findChats.bind(this);
     }
     async findChats(id) {
-        let array_chat =  await db.collection('chats').doc(id).collection('msgList').orderBy('time', 'asc').get().
-            then(function (query) {
+        let array_chat = await db
+            .collection('chats')
+            .doc(id)
+            .collection('msgList')
+            .orderBy('time', 'asc')
+            .get()
+            .then(function (query) {
                 let array_ = [];
                 query.forEach(function (doc) {
                     array_.push(doc.data())

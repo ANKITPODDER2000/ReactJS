@@ -66,7 +66,7 @@ class App extends Component{
                                 <Redirect to="/login" />
                             :
                                 <AppBody >
-                                    <Sidebar/>
+                                    <Sidebar />
                                     <Chat id={details.match.params.chatPersonId}/>
                                 </AppBody>
                     }
