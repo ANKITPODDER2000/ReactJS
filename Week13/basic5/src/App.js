@@ -9,6 +9,13 @@ import './App.css';
 
 class App extends Component{
     static contextType = UserContext;
+    constructor(props) {
+        super(props);
+        this.state = {
+            chat : ''
+        }
+    }
+    
     render() {
         const { userLogin , id } = this.context;
         return (
@@ -53,14 +60,14 @@ class App extends Component{
                 {/*This route for the chat page!*/}
                 <Route
                     exact
-                    path="/chat/:userId"
-                    render={() =>
+                    path="/:userId/chat/:chatPersonId"
+                    render={(details) =>
                         !userLogin ?
                                 <Redirect to="/login" />
                             :
-                                <AppBody>
+                                <AppBody >
                                     <Sidebar/>
-                                    <Chat />
+                                    <Chat id={details.match.params.chatPersonId}/>
                                 </AppBody>
                     }
                 />

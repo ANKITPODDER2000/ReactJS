@@ -8,13 +8,14 @@ import Style from "./styles/Chat";
 
 class Chat extends Component {
     render() {
+        console.log(this.props);
         const { classes } = this.props;
         return (
             <div className={classes.chat}>
                 {/*Chat Header*/}
                 <ChatHeader />
                 {/*Chat Box*/}
-                <ChatBox />
+                <ChatBox id={ this.props.id }/>
                 {/*Typying section*/}
                 <TypeMsg />
             </div>

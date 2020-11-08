@@ -3,15 +3,17 @@ import { Avatar } from '@material-ui/core';
 import DoneAllIcon from '@material-ui/icons/DoneAll';
 import { withStyles } from "@material-ui/styles";
 import { withRouter } from "react-router-dom";
+import { UserContext } from "./Context/UserContext";
 import style from "./styles/ChatOptions";
 
 class ChatOptions extends Component {
+    static contextType = UserContext;
     constructor(props) {
         super(props);
         this.handleClick = this.handleClick.bind(this);
     }
     handleClick() {
-        this.props.history.push(`/chat/${this.props.id}`);
+        this.props.history.push(`/${this.context.id}/chat/${this.props.id}`);
     }
     render() {
         const { classes } = this.props;

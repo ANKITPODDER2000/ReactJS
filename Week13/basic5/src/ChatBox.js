@@ -1,84 +1,45 @@
 import React, { Component } from 'react';
 import { withStyles } from "@material-ui/styles";
+import db from "./firebase";
 import style from "./styles/ChatBox";
 
 class ChatBox extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            array_chat : []
+        }
+        this.findChats = this.findChats.bind(this);
+    }
+    async findChats(id) {
+        let array_chat =  await db.collection('chats').doc(id).collection('msgList').orderBy('time', 'asc').get().
+            then(function (query) {
+                let array_ = [];
+                query.forEach(function (doc) {
+                    array_.push(doc.data())
+                })
+                return array_;
+            })
+        this.setState({array_chat : array_chat})
+    }
+    componentDidMount() {
+        this.findChats(this.props.id);
+    }
+    componentDidUpdate() {
+        this.findChats(this.props.id);
+    }
     render() {
         const { classes } = this.props;
         return (
             <div className={classes.container}>
-                <div>
-                    <div className={classes.msgDiv}>
-                        <p>Hi I am ankit Podder I am form Kolkata , west bengal , I want to talk to u.</p>
-                        <p>12.05 pm</p>
+                {this.state.array_chat.map(sms => 
+                    <div className={`container ${sms.sendbyme && classes.sendbymeContainer}`}>
+                        <div className={`${classes.msgDiv} ${sms.sendbyme && classes.sendbyme}`}>
+                            <p>{sms.text}</p>
+                            <p>12.05 pm</p>
+                        </div>
                     </div>
-                </div>
-                <div className={`container ${true && classes.sendbymeContainer}`}>
-                    <div className={`${classes.msgDiv} ${true && classes.sendbyme}`}>
-                        <p>Hi I am ankit Podder I am form Kolkata , west bengal , I want to talk to u.</p>
-                        <p>12.05 pm</p>
-                    </div>
-                </div>
-                <div>
-                    <div className={classes.msgDiv}>
-                        <p>Hi I am ankit Podder I am form Kolkata , west bengal , I want to talk to u.</p>
-                        <p>12.05 pm</p>
-                    </div>
-                </div>
-                <div className={`container ${true && classes.sendbymeContainer}`}>
-                    <div className={`${classes.msgDiv} ${true && classes.sendbyme}`}>
-                        <p>Hi I am ankit Podder I am form Kolkata , west bengal , I want to talk to u.</p>
-                        <p>12.05 pm</p>
-                    </div>
-                </div>
-                <div>
-                    <div className={classes.msgDiv}>
-                        <p>Hi I am ankit Podder I am form Kolkata , west bengal , I want to talk to u.</p>
-                        <p>12.05 pm</p>
-                    </div>
-                </div>
-                <div className={`container ${true && classes.sendbymeContainer}`}>
-                    <div className={`${classes.msgDiv} ${true && classes.sendbyme}`}>
-                        <p>Hi I am ankit Podder I am form Kolkata , west bengal , I want to talk to u.</p>
-                        <p>12.05 pm</p>
-                    </div>
-                </div>
-                <div>
-                    <div className={classes.msgDiv}>
-                        <p>Hi I am ankit Podder I am form Kolkata , west bengal , I want to talk to u.</p>
-                        <p>12.05 pm</p>
-                    </div>
-                </div>
-                <div className={`container ${true && classes.sendbymeContainer}`}>
-                    <div className={`${classes.msgDiv} ${true && classes.sendbyme}`}>
-                        <p>Hi I am ankit Podder I am form Kolkata , west bengal , I want to talk to u.</p>
-                        <p>12.05 pm</p>
-                    </div>
-                </div>
-                <div>
-                    <div className={classes.msgDiv}>
-                        <p>Hi I am ankit Podder I am form Kolkata , west bengal , I want to talk to u.</p>
-                        <p>12.05 pm</p>
-                    </div>
-                </div>
-                <div className={`container ${true && classes.sendbymeContainer}`}>
-                    <div className={`${classes.msgDiv} ${true && classes.sendbyme}`}>
-                        <p>Hi I am ankit Podder I am form Kolkata , west bengal , I want to talk to u.</p>
-                        <p>12.05 pm</p>
-                    </div>
-                </div>
-                <div>
-                    <div className={classes.msgDiv}>
-                        <p>Hi I am ankit Podder I am form Kolkata , west bengal , I want to talk to u.</p>
-                        <p>12.05 pm</p>
-                    </div>
-                </div>
-                <div className={`container ${true && classes.sendbymeContainer}`}>
-                    <div className={`${classes.msgDiv} ${true && classes.sendbyme}`}>
-                        <p>Hi I am ankit Podder I am form Kolkata , west bengal , I want to talk to u.</p>
-                        <p>12.05 pm</p>
-                    </div>
-                </div>
+                )}
             </div>
         );
     }
