@@ -41,7 +41,7 @@ class ChatBox extends Component {
                     <div className={`container ${sms.sendbyme && classes.sendbymeContainer}`}>
                         <div className={`${classes.msgDiv} ${sms.sendbyme && classes.sendbyme}`}>
                             <p>{sms.text}</p>
-                            <p>12.05 pm</p>
+                            <p>{new Date(sms.time?.toDate()).toTimeString().slice(0,5)}</p>
                         </div>
                     </div>
                 )}

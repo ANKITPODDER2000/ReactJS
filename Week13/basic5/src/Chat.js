@@ -17,7 +17,7 @@ class Chat extends Component {
                 {/*Chat Box*/}
                 <ChatBox id={ this.props.id }/>
                 {/*Typying section*/}
-                <TypeMsg />
+                <TypeMsg id={ this.props.id }/>
             </div>
         );
     }

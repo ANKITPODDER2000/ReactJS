@@ -34,7 +34,7 @@ export default {
         marginBottom:'15px',
         "& p:nth-child(1)": {
             marginRight: '15px',
-            maxWidth: 'calc(100% - 70px)',
+            //maxWidth: 'calc(100% - 70px)',
             wordBreak: 'break-word'
         },
         "& p:nth-child(2)": {

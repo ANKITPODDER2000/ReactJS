@@ -4,6 +4,8 @@ import SendIcon from '@material-ui/icons/Send';
 import MicIcon from '@material-ui/icons/Mic';
 import { withStyles } from "@material-ui/styles";
 import style from "./styles/TypeMsg";
+import db from "./firebase";
+import firebase from "firebase";
 
 class TypeMsg extends Component {
     constructor(props) {
@@ -12,18 +14,35 @@ class TypeMsg extends Component {
             value : ''
         }
         this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
     handleChange(e) {
         this.setState({
             value : e.target.value
         })
     }
+    handleSubmit(e) {
+        e.preventDefault();
+        let msg_map = {
+            text: this.state.value,
+            sendbyme: true,
+            time : firebase.firestore.FieldValue.serverTimestamp()
+        }
+        db.collection('chats').doc(this.props.id).collection('msgList').add(
+            msg_map
+        ).then(
+            () => this.setState({value : ''})
+        )
+    }
     render() {
         const { classes } = this.props;
         return (
             <div className={classes.container}>
                 <EmojiEmotionsIcon style={{color : '#33383B' , fontSize : '30px',cursor : 'pointer'}}/>
-                <form className={classes.form}>
+                <form
+                    className={classes.form}
+                    onSubmit = {this.handleSubmit}
+                >
                     <input
                         placeholder="Type your Message"
                         value={this.state.value}
