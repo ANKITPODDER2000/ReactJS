@@ -12,25 +12,18 @@ import { withStyles } from "@material-ui/styles";
 
 const style = {
     "@global": {
+        '.MuiInput-underline:hover:not(.Mui-disabled):before': {
+            borderBottom: props => props.isNight? '2px solid rgba(255, 255, 255, 0.87)' : '2px solid rgba(0, 0, 0, 0.87)',
+        },
         ".MuiInput-underline::before": {
             borderColor: props => props.isNight ? '#fff' : '#000',
-            "&:hover" : {
-                borderColor: props => props.isNight ? '#fff' : '#000',
-            }
         },
         '.MuiInputBase-root': {
             color :props => props.isNight ? '#fff' : '#000',
         },
-        '.MuiMenu-list': {
-            color :props => props.isNight ? '#fff' : '#000',
-            background :props => props.isNight ? '#000' : '#fff',
-        },
         '.MuiSvgIcon-root': {
             color :props => props.isNight ? '#fff' : '#000',
         },
-        '.MuiListItem-root.Mui-selected, .MuiListItem-root.Mui-selected:hover':{
-            background:props => props.isNight ? '#fff2' : 'rgba(0,0,0,0.04)'
-        }
     },
     nav_root: {
         position: 'relative',
@@ -42,7 +35,8 @@ const style = {
         flexDirection: 'row',
         alignItems: 'center',
         background: props => props.isNight ? '#000' : '#fff',
-        boxShadow:  props => props.isNight ? '0 10px 10px #fff2' : '0 10px 10px #0002',
+        boxShadow: props => props.isNight ? '0 5px 10px #fff2' : '0 10px 10px #0002',
+        zIndex : 1
     },
     leftContainer: {
         position: 'relative',
