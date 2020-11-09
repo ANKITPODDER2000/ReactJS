@@ -47,7 +47,9 @@ const style = {
         flexDirection: 'row',
         '& h1': {
             marginRight: '20px',
-            color : props => props.isNight ? '#fff' : '#000',
+            color: props => props.isNight ? '#fff' : '#000',
+            fontFamily: "Russo One, sans-serif",
+            letterSpacing : '4px'
         },
         '& svg': {
             marginRight: '10px',

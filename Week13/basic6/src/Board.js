@@ -23,9 +23,10 @@ const style = {
             position: 'relative',
             height: '100px',
             width: '100px',
-            color:' #fff',
+            color: props => props.isNight ? '#fff' : '#000',
             textAlign: 'center',
             fontSize: '40px',
+            fontFamily: "Montserrat, sans-serif"
         },
         'table tr:nth-child(1) td': {
             borderBottom: props => props.isNight ? "2px solid #fff" : '2px solid #000',
@@ -38,6 +39,9 @@ const style = {
         },
         'table tr td.left': {
             borderLeft: props => props.isNight ? "2px solid #fff" : '2px solid #000',
+        },
+        '::placeholder': {
+            color: props => props.isNight ? '#000' : '#000'
         }
     },
     container: {
@@ -62,7 +66,8 @@ const style = {
         justifyContent: 'center',
         '& h1': {
             marginRight: '20px',
-            textTransform : 'uppercase'
+            textTransform: 'uppercase',
+            fontFamily: 'Poppins, sans-serif'
         },
         marginBottom : '20px'
     },
@@ -81,9 +86,9 @@ const style = {
             height: '36px',
             padding: '4px 15px',
             marginRight: '20px',
-            fontFamily: 'consolas',
             fontSize: '18px',
-            width:'250px'
+            width: '250px',
+            fontFamily: 'Poppins, sans-serif'
         }
     },
     btn: {
@@ -128,18 +133,22 @@ class Board extends Component {
                     <div className={classes.formContainer}>
                         {this.props.gameEnd
                             ?
-                            <h1 style={{marginBottom:"15px"}}>{ this.props.result } is the winner of the Game!</h1>
+                            this.props.result === 'tie'
+                                ?
+                                <h1 style={{marginBottom:"15px" , fontFamily: 'Poppins, sans-serif'}}>Match Tie !!</h1>
+                                : 
+                                <h1 style={{marginBottom:"15px" , fontFamily: 'Poppins, sans-serif'}}>{ this.props.result } is the winner of the Game!</h1>
                             :
-                            <h1 style={{marginBottom:"15px"}}>{this.props.playername} : IT's YOUR TURN</h1>
+                            <h1 style={{marginBottom:"15px" , fontFamily: 'Poppins, sans-serif'}}>{this.props.playername} : IT's YOUR TURN</h1>
                         }
                         <div>
-                            <Button variant="contained" color="secondary" className={classes.btn} onClick={this.props.restart}>RESTART</Button>
+                            <Button style={{fontFamily: 'Poppins, sans-serif'}} variant="contained" color="secondary" className={classes.btn} onClick={this.props.restart}>RESTART</Button>
                             {
                                 this.props.gameEnd
                                     ?
                                     null
                                     :
-                                    <Button variant="contained" color="primary" className={classes.btn} onClick={this.props.quit}>QUIT!</Button>
+                                    <Button style={{fontFamily: 'Poppins, sans-serif'}} variant="contained" color="primary" className={classes.btn} onClick={this.props.quit}>QUIT!</Button>
                             }
                         </div>
                     </div>
@@ -163,6 +172,7 @@ class Board extends Component {
                                 variant="contained"
                                 color="secondary"
                                 onClick={this.props.startPlay}
+                                style={{fontFamily: 'Poppins, sans-serif'}}
                             >
                                 Start Play!
                             </Button>

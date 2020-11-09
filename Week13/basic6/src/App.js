@@ -98,7 +98,7 @@ class App extends Component{
             playerSymbol: 'X',              //Player symbol -> X / O
             board: this.makeInitialBoard(), // this is the board for the game!
             isStartPlay: false,              // it is used to determine whether play start or not ?
-            playername: 'PLAYER 1',         //Player name , default player1 , but initialize with -> ''
+            playername: '',         //Player name , default player1 , but initialize with -> ''
             playerStart: true,              // To determine whether player Starts the Game or AI
             gameEnd : false,
             result : ''
@@ -191,7 +191,7 @@ class App extends Component{
                     if (isTie(this.state.board)) {
                         this.setState({
                             gameEnd: true,
-                            result : 'Tie'
+                            result : 'tie'
                         })
                     } else {
                         this.setState({
@@ -229,7 +229,8 @@ class App extends Component{
                 } else {
                     if (isTie(this.state.board)) {
                         this.setState({
-                            result : 'tie'
+                            result: 'tie',
+                            gameEnd:true
                         })
                     } else {
                         this.makeAImove();
