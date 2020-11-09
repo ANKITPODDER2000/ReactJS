@@ -1,20 +1,64 @@
-import { Component } from "react";
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Switch from '@material-ui/core/Switch';
+import React ,{ Component } from "react";
+import Nav from "./Nav";
+import { withStyles } from "@material-ui/styles";
+
+
+
+const style = {
+    "@global": {
+        "*": {
+            padding: 0,
+            margin: 0,
+            boxSizing: 'border-box'
+        }
+    }
+}
 
 class App extends Component{
+    constructor(props) {
+        super(props);
+        this.state = {
+            isNight: true,
+            playerSymbol: 'X',
+            board : this.makeInitialBoard()
+        }
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSelectChange = this.handleSelectChange.bind(this);
+    }
+    makeInitialBoard() {
+        let board = [];
+        for (let i = 0; i < 3; i++){
+            let row = [];
+            for (let j = 0; j < 3; j++){
+                row.push('');
+            }
+            board.push(row);
+        }
+        return board;
+    }
+    handleChange() {
+        this.setState({
+            isNight : !this.state.isNight
+        })
+    }
+    handleSelectChange(e) {
+        this.setState({
+            playerSymbol : e.target.value
+        })
+    }
     render() {
+        const { classes } = this.props;
         return (
             <div>
-                <nav>
-                    <div>
-                        <h1>Tic Tac Toe</h1>
-                        <Switch checked={true} onChange={()=>console.log(5)} name="checkedA" />
-                    </div>
-                </nav>
+                <Nav
+                    handleSelectChange={this.handleSelectChange}
+                    handleChange={this.handleChange}
+                    playerSymbol={this.state.playerSymbol}
+                    isNight={this.state.isNight}
+                />
             </div>
         )
     }
 }
 
-export default App;
+export default withStyles(style)(App);
