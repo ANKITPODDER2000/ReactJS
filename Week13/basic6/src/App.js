@@ -5,6 +5,79 @@ import Nav from "./Nav";
 import Board from "./Board";
 import { withStyles } from "@material-ui/styles";
 
+function max(a, b) {
+    if (a > b) return a;
+    return b;
+}
+function min(a, b) {
+    if (a < b) return a;
+    return b;
+}
+
+function winner(board , sym) {
+    for (let i = 0; i < 3; i++){
+        if ((board[i][0] === sym) && (board[i][1] === sym) && (board[i][2] === sym)) return true;
+        if ((board[0][i] === sym) && (board[1][i] === sym) && (board[2][i] === sym)) return true;
+    }
+    if ((board[0][0] === sym) && (board[1][1] === sym) && (board[2][2] === sym)) return true;
+    if ((board[0][2] === sym) && (board[1][1] === sym) && (board[2][0] === sym)) return true;
+    return false;
+}
+function isTie(board) {
+    for (let i = 0; i < 3; i++){
+        for (let j = 0; j < 3; j++){
+            if(board[i][j] === '') return false;
+        }
+    }
+    return true;
+}
+
+/**
+ * score = maxmin(
+        board,
+        { ai : sym, player: this.state.playerSymbol },
+        { ai : 1 , player : -1 , tie : 0},
+        'max'
+    )
+ */
+function maxmin(board, symbol, reward, str) {
+    if( isTie(board)) return 0;
+    if (str === 'max') {
+        let bestScore = +Infinity;
+        for (let i = 0; i < 3; i++){
+            for (let j = 0; j < 3; j++){
+                if (board[i][j] === '') {
+                    board[i][j] = symbol.player;
+                    if (winner(board, symbol.player)) {
+                        board[i][j] = ''
+                        return -1;
+                    }
+                    let score = maxmin(board, symbol, reward, 'min');
+                    bestScore = min(score, bestScore);
+                    board[i][j] = ''
+                }
+            }
+        }
+        return bestScore;
+    } else {
+        let bestScore = -Infinity;
+        for (let i = 0; i < 3; i++){
+            for (let j = 0; j < 3; j++){
+                if (board[i][j] === '') {
+                    board[i][j] = symbol.ai;
+                    if (winner(board, symbol.ai)) {
+                        board[i][j] = ''
+                        return 1;
+                    }
+                    let score = maxmin(board, symbol, reward, 'min');
+                    bestScore = max(score, bestScore);
+                    board[i][j] = ''
+                }
+            }
+        }
+        return bestScore;
+    }
+}
 
 
 const style = {
@@ -37,8 +110,6 @@ class App extends Component{
         this.startPlay = this.startPlay.bind(this);
         this.tdClick = this.tdClick.bind(this);
         this.gameStart = this.gameStart.bind(this);
-        this.winner = this.winner.bind(this);
-        this.isTie = this.isTie.bind(this);
         this.makeAImove = this.makeAImove.bind(this);
         this.restart = this.restart.bind(this);
         this.quit = this.quit.bind(this);
@@ -73,26 +144,51 @@ class App extends Component{
             y = Math.floor(Math.random() * 3);
         } while (this.state.board[x][y] !== '');
          */
-
-
-        //console.log(x, y);
-        let newBoard = this.state.board;
-        let sym;
+        let board = this.state.board;
+        let sym , score , pos , bestScore = -Infinity;
         if (this.state.playerSymbol === 'X') sym = 'O';
         else sym = 'X';
-        newBoard[x][y] = sym;
+        for (let i = 0; i < 3; i++){
+            for (let j = 0; j < 3; j++){
+                if (board[i][j] === '') {
+                    board[i][j] = sym;
+                    if (winner(board, sym))
+                    {
+                        score = 1;
+                    }
+                    else {
+                        score = maxmin(
+                            board,
+                            { ai: sym, player: this.state.playerSymbol },
+                            { ai: 1, player: -1, tie: 0 },
+                            'max'
+                        )
+                    }
+                    if (score > bestScore) {
+                        bestScore = score;
+                        pos = {x : i , y : j}
+                    }
+                    board[i][j] = '';
+                }
+            }
+        }
+        //console.log(pos);
+        //console.log(board)
+        //console.log(x, y);
+        let newBoard = this.state.board;
+        newBoard[pos.x][pos.y] = sym;
         this.setState({
             board: newBoard,
             playerStart: false
         }, () => {
-                let ret = this.winner(sym);
+                let ret = winner(this.state.board , sym);
                 if (ret) {
                     this.setState({
                         gameEnd: true,
                         result : 'AI player'
                     })
                 } else {
-                    if (this.isTie()) {
+                    if (isTie(this.state.board)) {
                         this.setState({
                             gameEnd: true,
                             result : 'Tie'
@@ -105,29 +201,14 @@ class App extends Component{
                 }
         })
     }
-    isTie() {
-        for (let i = 0; i < 3; i++){
-            for (let j = 0; j < 3; j++){
-                if(this.state.board[i][j] === '') return false;
-            }
-        }
-        return true;
-    }
+    
     gameStart() {
         //console.log("GAME START!")
         if (this.state.playerStart === false) {
             this.makeAImove();
         }
     }
-    winner(sym) {
-        for (let i = 0; i < 3; i++){
-            if ((this.state.board[i][0] === sym) && (this.state.board[i][1] === sym) && (this.state.board[i][2] === sym)) return true;
-            if ((this.state.board[0][i] === sym) && (this.state.board[1][i] === sym) && (this.state.board[2][i] === sym)) return true;
-        }
-        if ((this.state.board[0][0] === sym) && (this.state.board[1][1] === sym) && (this.state.board[2][2] === sym)) return true;
-        if ((this.state.board[0][2] === sym) && (this.state.board[1][1] === sym) && (this.state.board[2][0] === sym)) return true;
-        return false;
-    }
+    
     tdClick(pos) {
         if (!this.state.playerStart || this.state.result!=='' || this.state.gameEnd) return;
         let x = Number(pos[0]);
@@ -139,14 +220,14 @@ class App extends Component{
             board: newBoard,
             playerStart : false
         }, () => {
-                let ret = this.winner(this.state.playerSymbol);
+                let ret = winner(this.state.board , this.state.playerSymbol);
                 if (ret) {
                     this.setState({
                         result: this.state.playername,
                         gameEnd : true
                     })
                 } else {
-                    if (this.isTie()) {
+                    if (isTie(this.state.board)) {
                         this.setState({
                             result : 'tie'
                         })

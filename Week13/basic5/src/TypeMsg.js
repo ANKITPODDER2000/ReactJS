@@ -30,9 +30,13 @@ class TypeMsg extends Component {
         }
         db.collection('chats').doc(this.props.id).collection('msgList').add(
             msg_map
-        ).then(
-            () => this.setState({value : ''})
         )
+        db.collection('chats').doc(this.props.id).update({
+            "last_message.sendbyme": true,
+            "last_message.text": this.state.value
+        }).then(
+            ()=>this.setState({value : ''})
+        ).catch(error => console.log(error.message))
     }
     render() {
         const { classes } = this.props;
