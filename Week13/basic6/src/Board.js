@@ -3,15 +3,21 @@ import Switch from '@material-ui/core/Switch';
 import { withStyles } from "@material-ui/styles";
 import Button from '@material-ui/core/Button';
 import Res from "./Responsive";
+import "./Board.css"
 
 const style = {
     "@global": {
+        ".table": {
+            margin: '50px auto 0',
+            width: '300px',
+            height: '306.5px',
+            position: 'relative',
+        },
         "table": {
             position: 'relative',
             width : '300px',
             height: '300px',
             background:' transparent',
-            margin:' 50px auto 0',
         },
         'table tr': {
             position: 'relative',
@@ -26,7 +32,7 @@ const style = {
             color: props => props.isNight ? '#fff' : '#000',
             textAlign: 'center',
             fontSize: '40px',
-            fontFamily: "Montserrat, sans-serif"
+            fontFamily: "srif"
         },
         'table tr:nth-child(1) td': {
             borderBottom: props => props.isNight ? "2px solid #fff" : '2px solid #000',
@@ -53,6 +59,13 @@ const style = {
             [Res('330')]: {
                 fontSize : '10px'
             }
+        },
+        ".span" : {
+            background: props => props.result === 'Player 1' ? '#32CD32' : '#f00',
+            zIndex : '10'
+        },
+        ".help": {
+            color : props => props.result === 'Player 1' ? '#32CD32' : '#f00',
         }
     },
     container: {
@@ -143,6 +156,49 @@ const style = {
 }
 
 class Board extends Component {
+    geyStyle(board) {
+        let style = {'position' : 'absolute'}
+        for (let i = 0; i < 3; i++){
+            if (board[i][0] === board[i][1] && board[i][1] === board[i][2] && board[i][0]!=='') {
+                style['height'] = '3px';
+                style['width'] = '300px';
+                style['left'] = '0px';
+                style['top'] = String((i * 100) + 48.5) + 'px';
+                style['transformOrigin'] = 'left';
+                style['animation'] = 'aniX 2s linear forwards';
+                style['transform'] = 'scaleX(0)';
+            }
+        }
+
+        for (let i = 0; i < 3; i++){
+            if (board[0][i] === board[1][i] && board[1][i] === board[2][i] && board[0][i]!=='') {
+                style['width'] = '3px';
+                style['height'] = '306.5px';
+                style['top'] = '0px';
+                style['left'] = String((i * 100) + 48.5) + 'px';
+                style['transformOrigin'] = 'top';
+                style['animation'] = 'aniY 2s linear forwards';
+                style['transform'] = 'scaleY(0)';
+            }
+        }
+        if (board[0][0] === board[1][1] && board[1][1] === board[2][2] && board[0][0] !== '') { 
+            style['width'] = '3px';
+            style['height'] = '425px';
+            style['left'] = '0';
+            style['transformOrigin'] = 'top';
+            style['animation'] = 'aniXY 2s linear forwards';
+            style['transform'] = 'scaleY(1) rotate(-44deg)';
+        }
+        if (board[0][2] === board[1][1] && board[1][1] === board[2][0] && board[1][1] !== '') { 
+            style['width'] = '3px';
+            style['height'] = '0px';
+            style['right'] = 0;
+            style['transformOrigin'] = 'top';
+            style['animation'] = 'aniXY 2s linear forwards';
+            style['transform'] = 'scaleY(1) rotate(44deg)';
+        }
+        return style;
+    }
     render() {
         const { classes } = this.props;
         let board = [];
@@ -150,7 +206,7 @@ class Board extends Component {
             board.push(
                 <tr key={i}>
                     <td
-                        className="right"
+                        className={`right ${this.props.arr.includes(`${i}-0`) && 'help'}`}
                         key={`${i}-0`}
                         onClick={() => this.props.tdClick(`${i}-0`)}
                     >
@@ -158,13 +214,14 @@ class Board extends Component {
                     </td>
 
                     <td
+                        className={`con ${this.props.arr.includes(`${i}-1`) && 'help'}`}
                         key={`${i}-1`}
                         onClick={() => this.props.tdClick(`${i}-1`)}
                     >
                         {this.props.board[i][1]}
                     </td>
                     <td
-                        className="left"
+                        className={`left ${this.props.arr.includes(`${i}-2`) && 'help'}`}
                         key={`${i}-2`}
                         onClick={() => this.props.tdClick(`${i}-2`)}
                     >
@@ -228,11 +285,20 @@ class Board extends Component {
                 }
                 {this.props.isStartPlay
                     ?
-                        <table>
-                            <tbody>
-                                {board}
-                            </tbody>
-                        </table> 
+                        <div className='table'>
+                            {
+                                (this.props.result !== 'tie' && this.props.result !== '')
+                                ?
+                                <span className={ "span spanActive" } style={this.geyStyle(this.props.board)}></span>
+                                :
+                                null
+                            }
+                            <table>
+                                <tbody>
+                                    {board}
+                                </tbody>
+                            </table> 
+                        </div>
                     :
                         null
                 }
