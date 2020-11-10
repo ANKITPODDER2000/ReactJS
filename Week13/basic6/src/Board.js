@@ -49,6 +49,9 @@ const style = {
             },
             [Res('410')]: {
                 fontSize : '11px'
+            },
+            [Res('330')]: {
+                fontSize : '10px'
             }
         }
     },
@@ -104,7 +107,7 @@ const style = {
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'center',
-        alignItems: 'center',
+        alignItems: 'flex-end',
         "& input" : {
             background: 'none',
             border: 'none',
@@ -123,11 +126,19 @@ const style = {
             },
             [Res('410')]: {
                 fontSize : '12px'
+            },
+            [Res('330')]: {
+                fontSize : '11px'
             }
         }
     },
     btn: {
         margin : '0 15px'
+    },
+    btnStart: {
+        [Res('330')]: {
+            padding : '5px 10px'
+        }
     }
 }
 
@@ -174,7 +185,7 @@ class Board extends Component {
                                 : 
                                 <h1 style={{marginBottom: '10px'}}>{ this.props.result } is the winner of the Game!</h1>
                             :
-                            <h1 style={{marginBottom: '10px'}}>{this.props.playername} : IT's YOUR TURN</h1>
+                            <h1 style={{marginBottom: '10px'}}>{this.props.currentPlayer} : IT's YOUR TURN</h1>
                         }
                         <div>
                             <Button style={{fontFamily: 'Poppins, sans-serif'}} variant="contained" color="secondary" className={classes.btn} onClick={this.props.restart}>RESTART</Button>
@@ -207,6 +218,7 @@ class Board extends Component {
                                 variant="contained"
                                 color="secondary"
                                 onClick={this.props.startPlay}
+                                className={classes.btnStart}
                                 style={{fontFamily: 'Poppins, sans-serif'}}
                             >
                                 Start Play!
