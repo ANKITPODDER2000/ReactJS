@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Switch from '@material-ui/core/Switch';
 import { withStyles } from "@material-ui/styles";
 import Button from '@material-ui/core/Button';
-import "./Board.css";
+import Res from "./Responsive";
 
 const style = {
     "@global": {
@@ -41,7 +41,15 @@ const style = {
             borderLeft: props => props.isNight ? "2px solid #fff" : '2px solid #000',
         },
         '::placeholder': {
-            color: props => props.isNight ? '#000' : '#000'
+            color: props => props.isNight ? '#fff7' : '#0007'
+        },
+        '.MuiButtonBase-root': {
+            [Res('480')]: {
+                fontSize : '14px'
+            },
+            [Res('410')]: {
+                fontSize : '11px'
+            }
         }
     },
     container: {
@@ -57,19 +65,38 @@ const style = {
         margin :'20px auto 0',
         padding: '25px 10%',
         background: props => props.isNight ? '#fff8' : '#0002',
-        textAlign : 'center'
+        textAlign: 'center',
+        [Res('1105')]: {
+            padding : '20px'
+        },
+        [Res('901')]: {
+            width: '95%'
+        },
+        [Res('432')]: {
+            padding : '20px 10px'
+        },
+        '& h1': {
+            [Res('731')]: {
+                fontSize : '16px'
+            },
+            [Res('432')]: {
+                fontSize: '14px',
+                marginRight : '10px'
+            }
+        },
+        
     },
     topContainer: {
         display: 'flex',
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
+        marginBottom: '10px',
         '& h1': {
             marginRight: '20px',
             textTransform: 'uppercase',
             fontFamily: 'Poppins, sans-serif'
         },
-        marginBottom : '20px'
     },
     bottomContainer: {
         position:' relative',
@@ -88,7 +115,15 @@ const style = {
             marginRight: '20px',
             fontSize: '18px',
             width: '250px',
-            fontFamily: 'Poppins, sans-serif'
+            fontFamily: 'Poppins, sans-serif',
+            [Res('480')]: {
+                width: 'fit-content',
+                fontSize: '16px',
+                padding : '4px 8px'
+            },
+            [Res('410')]: {
+                fontSize : '12px'
+            }
         }
     },
     btn: {
@@ -135,11 +170,11 @@ class Board extends Component {
                             ?
                             this.props.result === 'tie'
                                 ?
-                                <h1 style={{marginBottom:"15px" , fontFamily: 'Poppins, sans-serif'}}>Match Tie !!</h1>
+                                <h1 style={{marginBottom: '10px'}}>Match Tie !!</h1>
                                 : 
-                                <h1 style={{marginBottom:"15px" , fontFamily: 'Poppins, sans-serif'}}>{ this.props.result } is the winner of the Game!</h1>
+                                <h1 style={{marginBottom: '10px'}}>{ this.props.result } is the winner of the Game!</h1>
                             :
-                            <h1 style={{marginBottom:"15px" , fontFamily: 'Poppins, sans-serif'}}>{this.props.playername} : IT's YOUR TURN</h1>
+                            <h1 style={{marginBottom: '10px'}}>{this.props.playername} : IT's YOUR TURN</h1>
                         }
                         <div>
                             <Button style={{fontFamily: 'Poppins, sans-serif'}} variant="contained" color="secondary" className={classes.btn} onClick={this.props.restart}>RESTART</Button>

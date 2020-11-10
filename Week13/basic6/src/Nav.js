@@ -9,6 +9,7 @@ import Switch from '@material-ui/core/Switch';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import { withStyles } from "@material-ui/styles";
+import Res from "./Responsive";
 
 const style = {
     "@global": {
@@ -36,7 +37,10 @@ const style = {
         alignItems: 'center',
         background: props => props.isNight ? '#000' : '#fff',
         boxShadow: props => props.isNight ? '0 5px 10px #fff2' : '0 10px 10px #0002',
-        zIndex : 1
+        zIndex: 1,
+        [Res('400')]: {
+            padding : '0 10px'
+        }
     },
     leftContainer: {
         position: 'relative',
@@ -49,11 +53,24 @@ const style = {
             marginRight: '20px',
             color: props => props.isNight ? '#fff' : '#000',
             fontFamily: "Russo One, sans-serif",
-            letterSpacing : '4px'
+            letterSpacing: '4px',
+            [Res('500')]: {
+                fontSize : '16px'
+            },
+            [Res('375')]: {
+                fontSize: '14px',
+                marginRight : '10px'
+            },
+            [Res('330')]: {
+                fontSize : '12px'
+            }
         },
         '& svg': {
             marginRight: '10px',
-            color : props => props.isNight ? '#fff' : '#000',
+            color: props => props.isNight ? '#fff' : '#000',
+            [Res('375')]: {
+                marginRight:'5px'
+            }
         }
     }
 }
