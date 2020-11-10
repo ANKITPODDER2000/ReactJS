@@ -61,11 +61,11 @@ const style = {
             }
         },
         ".span" : {
-            background: props => props.result === 'Player 1' ? '#32CD32' : '#f00',
+            background: props => props.result === props.playername ? '#32CD32' : '#f00',
             zIndex : '10'
         },
         ".help": {
-            color : props => props.result === 'Player 1' ? '#32CD32' : '#f00',
+            color : props => props.result === props.playername ? '#32CD32' : '#f00',
         }
     },
     container: {
@@ -163,7 +163,7 @@ class Board extends Component {
                 style['height'] = '3px';
                 style['width'] = '300px';
                 style['left'] = '0px';
-                style['top'] = String((i * 100) + 48.5) + 'px';
+                style['top'] = String((i * 100) + 48.5+(i*2)) + 'px';
                 style['transformOrigin'] = 'left';
                 style['animation'] = 'aniX 2s linear forwards';
                 style['transform'] = 'scaleX(0)';
@@ -175,7 +175,7 @@ class Board extends Component {
                 style['width'] = '3px';
                 style['height'] = '306.5px';
                 style['top'] = '0px';
-                style['left'] = String((i * 100) + 48.5) + 'px';
+                style['left'] = String((i * 100) + 48.5+(i*2)) + 'px';
                 style['transformOrigin'] = 'top';
                 style['animation'] = 'aniY 2s linear forwards';
                 style['transform'] = 'scaleY(0)';
