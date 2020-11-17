@@ -2,158 +2,10 @@ import React, { Component } from 'react';
 import Switch from '@material-ui/core/Switch';
 import { withStyles } from "@material-ui/styles";
 import Button from '@material-ui/core/Button';
-import Res from "./Responsive";
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
+import style from "./stylesheet/Board";
 import "./Board.css"
-
-const style = {
-    "@global": {
-        ".table": {
-            margin: '50px auto 0',
-            width: '300px',
-            height: '306.5px',
-            position: 'relative',
-        },
-        "table": {
-            position: 'relative',
-            width : '300px',
-            height: '300px',
-            background:' transparent',
-        },
-        'table tr': {
-            position: 'relative',
-            width: '100%',
-            height: '100px',
-            border: 'none',
-        },
-        'table tr td': {
-            position: 'relative',
-            height: '100px',
-            width: '100px',
-            color: props => props.isNight ? '#fff' : '#000',
-            textAlign: 'center',
-            fontSize: '40px',
-            fontFamily: "srif"
-        },
-        'table tr:nth-child(1) td': {
-            borderBottom: props => props.isNight ? "2px solid #fff" : '2px solid #000',
-        },
-        'table tr:nth-child(3) td': {
-            borderTop: props => props.isNight ? "2px solid #fff" : '2px solid #000',
-        },
-        'table tr td.right': {
-            borderRight: props => props.isNight ? "2px solid #fff" : '2px solid #000',
-        },
-        'table tr td.left': {
-            borderLeft: props => props.isNight ? "2px solid #fff" : '2px solid #000',
-        },
-        '::placeholder': {
-            color: props => props.isNight ? '#fff7' : '#0007'
-        },
-        '.MuiButtonBase-root': {
-            [Res('480')]: {
-                fontSize : '14px'
-            },
-            [Res('410')]: {
-                fontSize : '11px'
-            },
-            [Res('330')]: {
-                fontSize : '10px'
-            }
-        },
-        ".span" : {
-            background: props => props.result === props.playername ? '#32CD32' : '#f00',
-            zIndex : '10'
-        },
-        ".help": {
-            color : props => props.result === props.playername ? '#32CD32' : '#f00',
-        }
-    },
-    container: {
-        position: 'relative',
-        width: '100%',
-        height: 'calc(100vh - 60px)',
-        background: props => props.isNight ? '#000' : '#fff',
-        padding: '10px 0'
-    },
-    formContainer: {
-        position: 'relative',
-        width: '80%',
-        margin :'20px auto 0',
-        padding: '25px 10%',
-        background: props => props.isNight ? '#fff8' : '#0002',
-        textAlign: 'center',
-        [Res('1105')]: {
-            padding : '20px'
-        },
-        [Res('901')]: {
-            width: '95%'
-        },
-        [Res('432')]: {
-            padding : '20px 10px'
-        },
-        '& h1': {
-            [Res('731')]: {
-                fontSize : '16px'
-            },
-            [Res('432')]: {
-                fontSize: '14px',
-                marginRight : '10px'
-            }
-        },
-        
-    },
-    topContainer: {
-        display: 'flex',
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'center',
-        marginBottom: '10px',
-        '& h1': {
-            marginRight: '20px',
-            textTransform: 'uppercase',
-            fontFamily: 'Poppins, sans-serif'
-        },
-    },
-    bottomContainer: {
-        position:' relative',
-        width: '100%',
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'flex-end',
-        "& input" : {
-            background: 'none',
-            border: 'none',
-            outline: 'none',
-            borderBottom: '2px solid #f50057',
-            height: '36px',
-            padding: '4px 15px',
-            marginRight: '20px',
-            fontSize: '18px',
-            width: '250px',
-            fontFamily: 'Poppins, sans-serif',
-            [Res('480')]: {
-                width: 'fit-content',
-                fontSize: '16px',
-                padding : '4px 8px'
-            },
-            [Res('410')]: {
-                fontSize : '12px'
-            },
-            [Res('330')]: {
-                fontSize : '11px'
-            }
-        }
-    },
-    btn: {
-        margin : '0 15px'
-    },
-    btnStart: {
-        [Res('330')]: {
-            padding : '5px 10px'
-        }
-    }
-}
 
 class Board extends Component {
     geyStyle(board) {
@@ -266,20 +118,35 @@ class Board extends Component {
                             />
                         </div>
                         <div className={classes.bottomContainer}>
-                            <input type="text"
-                                placeholder="Please enter your name "
-                                value={this.props.playername}
-                                onChange={this.props.handleInputChange}
-                            />
-                            <Button
-                                variant="contained"
-                                color="secondary"
-                                onClick={this.props.startPlay}
-                                className={classes.btnStart}
-                                style={{fontFamily: 'Poppins, sans-serif'}}
+                            <div>
+                                <input type="text"
+                                    placeholder="Please enter your name "
+                                    value={this.props.playername}
+                                    onChange={this.props.handleInputChange}
+                                />
+                                <Button
+                                    variant="contained"
+                                    color="secondary"
+                                    onClick={this.props.startPlay}
+                                    className={classes.btnStart}
+                                    style={{fontFamily: 'Poppins, sans-serif'}}
+                                >
+                                    Start Play!
+                                </Button>
+                            </div>
+                        </div>
+                        <div className={classes.select}>
+                            <h2>Level  : </h2>
+                            <Select
+                                labelId="demo-simple-select-label"
+                                id="demo-simple-select"
+                                value={this.props.level}
+                                onChange={this.props.handleLevel}
                             >
-                                Start Play!
-                            </Button>
+                                <MenuItem value={'easy'}>Easy</MenuItem>
+                                <MenuItem value={'mid'}>Medium</MenuItem>
+                                <MenuItem value={'hard'}>Impossible</MenuItem>
+                            </Select>
                         </div>
                     </div>
                 }
