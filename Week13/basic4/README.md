@@ -1,68 +1,54 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Color Picker App (using ReactJs)
+---------------------------------------
 
-## Available Scripts
+## Home Page
+-----------------------------------------
+### Full Screen
+![image](https://user-images.githubusercontent.com/50513363/97811028-de4d8e80-1c9d-11eb-8324-a2bdf3e7fda0.png)
 
-In the project directory, you can run:
+### Responsive Screen
+![image](https://user-images.githubusercontent.com/50513363/97811070-1f45a300-1c9e-11eb-8f5c-597ec7908ee4.png)
 
-### `npm start`
+--------------------------------------
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## Color Page
+-----------------------------------------
+### Full Screen
+![image](https://user-images.githubusercontent.com/50513363/97811084-3edccb80-1c9e-11eb-832d-82d5e189f127.png)
 
-### `npm test`
+### Responsive Screen
+![image](https://user-images.githubusercontent.com/50513363/97811116-6b90e300-1c9e-11eb-9869-22c16bd85a87.png)
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+--------------------------------------
 
-### `npm run build`
+## ColorShade Page
+-----------------------------------------
+### Full Screen
+![image](https://user-images.githubusercontent.com/50513363/97811134-8ebb9280-1c9e-11eb-985c-c133d55ac49c.png)
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Responsive Screen
+![image](https://user-images.githubusercontent.com/50513363/97811155-ae52bb00-1c9e-11eb-9b75-7fb61e868b74.png)
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+--------------------------------------
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Copy Page
+-----------------------------------------
+### Full Screen
+![image](https://user-images.githubusercontent.com/50513363/97811160-c1fe2180-1c9e-11eb-9d02-92917a80b5c5.png)
 
-### `npm run eject`
+### Responsive Screen
+![image](https://user-images.githubusercontent.com/50513363/97811192-e6f29480-1c9e-11eb-9618-f482983d6285.png)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+--------------------------------------
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## New Palette Page
+-----------------------------------------
+### Full Screen
+![image](https://user-images.githubusercontent.com/50513363/97811243-3b960f80-1c9f-11eb-99d7-e88e1c54fc16.png)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+![image](https://user-images.githubusercontent.com/50513363/97811250-49e42b80-1c9f-11eb-9dcb-774ae828e20b.png)
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+### Responsive Screen
+![image](https://user-images.githubusercontent.com/50513363/97811263-5d8f9200-1c9f-11eb-8b30-2548be47672a.png)
+*******************************************

@@ -31,53 +31,96 @@ function isTie(board) {
     }
     return true;
 }
+function equals3(a, b, c) {
+  return a === b && b === c && a !== '';
+}
+
+function checkWinner(board) {
+  let winner = null;
+
+  // horizontal
+  for (let i = 0; i < 3; i++) {
+    if (equals3(board[i][0], board[i][1], board[i][2])) {
+      winner = board[i][0];
+    }
+  }
+
+  // Vertical
+  for (let i = 0; i < 3; i++) {
+    if (equals3(board[0][i], board[1][i], board[2][i])) {
+      winner = board[0][i];
+    }
+  }
+
+  // Diagonal
+  if (equals3(board[0][0], board[1][1], board[2][2])) {
+    winner = board[0][0];
+  }
+  if (equals3(board[2][0], board[1][1], board[0][2])) {
+    winner = board[2][0];
+  }
+
+  let openSpots = 0;
+  for (let i = 0; i < 3; i++) {
+    for (let j = 0; j < 3; j++) {
+      if (board[i][j] === '') {
+        openSpots++;
+      }
+    }
+  }
+
+  if (winner === null && openSpots === 0) {
+    return 'tie';
+  } else {
+    return winner;
+  }
+}
 
 /**
  * score = maxmin(
         board,
         { ai : sym, player: this.state.playerSymbol },
-        { ai : 1 , player : -1 , tie : 0},
+        { sym : 1 , this.state.playerSymbol : -1 , tie : 0},
         'max'
     )
  */
-function maxmin(board, symbol, reward, str) {
-    if( isTie(board)) return 0;
-    if (str === 'max') {
-        let bestScore = +Infinity;
-        for (let i = 0; i < 3; i++){
-            for (let j = 0; j < 3; j++){
-                if (board[i][j] === '') {
-                    board[i][j] = symbol.player;
-                    if (winner(board, symbol.player)) {
-                        board[i][j] = ''
-                        return -1;
-                    }
-                    let score = maxmin(board, symbol, reward, 'min');
-                    bestScore = min(score, bestScore);
-                    board[i][j] = ''
-                }
-            }
-        }
-        return bestScore;
-    } else {
-        let bestScore = -Infinity;
-        for (let i = 0; i < 3; i++){
-            for (let j = 0; j < 3; j++){
-                if (board[i][j] === '') {
-                    board[i][j] = symbol.ai;
-                    if (winner(board, symbol.ai)) {
-                        board[i][j] = ''
-                        return 1;
-                    }
-                    let score = maxmin(board, symbol, reward, 'min');
-                    bestScore = max(score, bestScore);
-                    board[i][j] = ''
-                }
-            }
-        }
-        return bestScore;
+function minimax(board, depth, isMaximizing , ai , human , scores) {
+    let result = checkWinner(board);
+    if (result !== null) {
+        return scores[result];
     }
+
+  if (isMaximizing) {
+    let bestScore = -Infinity;
+    for (let i = 0; i < 3; i++) {
+      for (let j = 0; j < 3; j++) {
+        // Is the spot available?
+        if (board[i][j] === '') {
+          board[i][j] = ai;
+          let score = minimax(board, depth + 1, false , ai , human , scores);
+          board[i][j] = '';
+          bestScore = max(score, bestScore);
+        }
+      }
+    }
+    return bestScore;
+  } else {
+    let bestScore = Infinity;
+    for (let i = 0; i < 3; i++) {
+      for (let j = 0; j < 3; j++) {
+        // Is the spot available?
+        if (board[i][j] === '') {
+          board[i][j] = human;
+          let score = minimax(board, depth + 1, true , ai , human , scores);
+          board[i][j] = '';
+          bestScore = min(score, bestScore);
+        }
+      }
+    }
+    return bestScore;
+  }
 }
+
 
 function getMatrixSuccess(board) {
     for (let i = 0; i < 3; i++){
@@ -159,38 +202,43 @@ class App extends Component{
             y = Math.floor(Math.random() * 3);
         } while (this.state.board[x][y] !== '');
          */
-        let board = this.state.board;
+        let board = this.state.board.slice();
         let sym , score , pos , bestScore = -Infinity;
         if (this.state.playerSymbol === 'X') sym = 'O';
         else sym = 'X';
+        let scores;
+        if (sym === 'X') {
+            scores = {'X' : 10 , 'O' : -10 , 'tie' : 0}
+        } else {
+            scores = {'X' : -10 , 'O' : 10 , 'tie' : 0}
+        }
         for (let i = 0; i < 3; i++){
             for (let j = 0; j < 3; j++){
                 if (board[i][j] === '') {
                     board[i][j] = sym;
-                    if (winner(board, sym))
-                    {
-                        score = 1;
-                    }
-                    else {
-                        score = maxmin(
-                            board,
-                            { ai: sym, player: this.state.playerSymbol },
-                            { ai: 1, player: -1, tie: 0 },
-                            'max'
-                        )
-                    }
+                    //function minimax(board, depth, isMaximizing , ai , human)
+                    score = minimax(
+                        board,
+                        0,
+                        false,
+                        sym,
+                        this.state.playerSymbol,
+                        scores
+                    );
+                    console.log(score);
+                    board[i][j] = '';
                     if (score > bestScore) {
                         bestScore = score;
                         pos = {x : i , y : j}
                     }
-                    board[i][j] = '';
+                    
                 }
             }
         }
         //console.log(pos);
         //console.log(board)
         //console.log(x, y);
-        let newBoard = this.state.board;
+        let newBoard = this.state.board.slice();
         newBoard[pos.x][pos.y] = sym;
         this.setState({
             board: newBoard,

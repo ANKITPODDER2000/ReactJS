@@ -1,3 +1,4 @@
+//Try to host it
 import React, { Component } from 'react';
 import { Switch , Route } from "react-router-dom";
 import Palette from "./Palette";

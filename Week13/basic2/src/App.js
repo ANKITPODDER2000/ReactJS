@@ -5,6 +5,7 @@ import Nav from "./Nav";
 import FoodSearch from "./FoodSearch";
 import MealSearch from "./MealSearch";
 import { Route , Switch } from "react-router-dom";
+//Import app.css
 import './App.css';
 
 class App extends Component{

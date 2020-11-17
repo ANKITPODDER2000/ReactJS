@@ -175,7 +175,7 @@ class Board extends Component {
                 style['width'] = '3px';
                 style['height'] = '306.5px';
                 style['top'] = '0px';
-                style['left'] = String((i * 100) + 48.5+(i*2)) + 'px';
+                style['left'] = String((i * 100) + 48.5) + 'px';
                 style['transformOrigin'] = 'top';
                 style['animation'] = 'aniY 2s linear forwards';
                 style['transform'] = 'scaleY(0)';
@@ -240,7 +240,7 @@ class Board extends Component {
                                 ?
                                 <h1 style={{marginBottom: '10px'}}>Match Tie !!</h1>
                                 : 
-                                <h1 style={{marginBottom: '10px'}}>{ this.props.result } is the winner of the Game!</h1>
+                                <h1 style={{marginBottom: '10px'}}>{ this.props.result } : Winner 🔥🔥🔥</h1>
                             :
                             <h1 style={{marginBottom: '10px'}}>{this.props.currentPlayer} : IT's YOUR TURN</h1>
                         }
